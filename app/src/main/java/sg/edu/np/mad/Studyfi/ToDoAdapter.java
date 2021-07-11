@@ -20,6 +20,7 @@ import java.util.List;
 public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
     private ArrayList<ToDo> toDoList;
     private DatabaseHandler databaseHandler;
+
     public ToDoAdapter(ArrayList<ToDo> input, Context context) {
         toDoList = input;
         databaseHandler = new DatabaseHandler(context, null, null, 1);

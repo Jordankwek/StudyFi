@@ -44,6 +44,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //Allows the users the add a task and store it in the database
     public void addTask(ToDo toDo){
         ContentValues values = new ContentValues();
         values.put(COLUMN_STATUS, 0);
@@ -55,6 +56,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Retrieve all the task from the database and stores it as an arraylist
     public ArrayList<ToDo> getAllTask(){
         ArrayList<ToDo> tList = new ArrayList<>();
         String query = "SELECT * FROM " + TABLE_TODO;
@@ -74,7 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return tList;
     }
 
-
+    //
     public ToDo getTask(int id){
         ToDo task = new ToDo();
         String query = "SELECT * FROM " + TABLE_TODO;
