@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class RadioActivity extends AppCompatActivity {
 
-
+    MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,8 @@ public class RadioActivity extends AppCompatActivity {
         ImageButton playbutton = findViewById(R.id.playRadio);
         ImageView radioPicture = findViewById(R.id.radioImage);
         TextView radioTitle = findViewById(R.id.radioTitle);
-        MediaPlayer mediaPlayer = new MediaPlayer();
+        ImageView backBtn = findViewById(R.id.radioBack);
+        mediaPlayer = new MediaPlayer();
         Intent receivingData = getIntent();
         String radioLink = receivingData.getStringExtra("Link");
         String radioName = receivingData.getStringExtra("Title");
@@ -81,18 +82,31 @@ public class RadioActivity extends AppCompatActivity {
         pausebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.pause();
+                mediaPlayer.stop();
                 playbutton.setEnabled(true);
                 pausebutton.setEnabled(false);
             }
         });
 
 
-
-
-
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RadioActivity.this, SelectRadioActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mediaPlayer.stop();
+    }
+    //Will implement more features to allow users to
+    // use app while listening to songs at the same time
 
 
 }

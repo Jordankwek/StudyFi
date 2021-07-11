@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 
@@ -17,6 +20,7 @@ public class SelectRadioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_radio);
         getSupportActionBar().hide();
+        ImageView backBtn = findViewById(R.id.radioSelectBack);
 
         Radio radio1 = new Radio();
         radio1.radioID = 1;
@@ -44,16 +48,30 @@ public class SelectRadioActivity extends AppCompatActivity {
         radio5.radioLink = "https://tuner.m1.fm/chillout.mp3;";
         radio5.radioName = "Chillout";
 
+        Radio radio6 = new Radio();
+        radio6.radioID = 6;
+        radio6.radioLink = "https://radioclassique.ice.infomaniak.ch/radioclassique-high.mp3";
+        radio6.radioName = "Radio Classique";
+
         radioList.add(radio1);
         radioList.add(radio2);
         radioList.add(radio3);
         radioList.add(radio4);
         radioList.add(radio5);
+        radioList.add(radio6);
 
         RecyclerView selectradiorv = findViewById(R.id.radiorv);
         RadioAdapter radioAdapter = new RadioAdapter(radioList, getApplicationContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         selectradiorv.setLayoutManager(linearLayoutManager);
         selectradiorv.setAdapter(radioAdapter);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SelectRadioActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
