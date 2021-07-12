@@ -101,8 +101,8 @@ public class RadioActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause(){
+        super.onPause();
         mediaPlayer.stop();
     }
     //Will implement more features to allow users to
