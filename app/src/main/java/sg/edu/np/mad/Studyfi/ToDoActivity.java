@@ -34,7 +34,6 @@ public class ToDoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_to_do);
         getSupportActionBar().hide();
         FloatingActionButton addTaskbutton = findViewById(R.id.addTaskbutton);
-        ImageView backBtn = findViewById(R.id.toDoBack);
 
         //Get all the task from the database
         toDoList = databaseHandler.getAllTask();
@@ -87,14 +86,6 @@ public class ToDoActivity extends AppCompatActivity {
                 });
                 builder.show();
 
-            }
-        });
-
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ToDoActivity.this, MainActivity.class);
-                startActivity(intent);
             }
         });
 

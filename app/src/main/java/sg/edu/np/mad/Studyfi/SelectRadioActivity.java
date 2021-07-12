@@ -20,8 +20,8 @@ public class SelectRadioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_radio);
         getSupportActionBar().hide();
-        ImageView backBtn = findViewById(R.id.radioSelectBack);
 
+        //Create radio items
         Radio radio1 = new Radio();
         radio1.radioID = 1;
         radio1.radioLink = "https://playerservices.streamtheworld.com/api/livestream-redirect/KISS_92.mp3";
@@ -66,12 +66,5 @@ public class SelectRadioActivity extends AppCompatActivity {
         selectradiorv.setLayoutManager(linearLayoutManager);
         selectradiorv.setAdapter(radioAdapter);
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SelectRadioActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }

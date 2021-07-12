@@ -29,7 +29,6 @@ public class RadioActivity extends AppCompatActivity {
         ImageButton playbutton = findViewById(R.id.playRadio);
         ImageView radioPicture = findViewById(R.id.radioImage);
         TextView radioTitle = findViewById(R.id.radioTitle);
-        ImageView backBtn = findViewById(R.id.radioBack);
         mediaPlayer = new MediaPlayer();
         Intent receivingData = getIntent();
         String radioLink = receivingData.getStringExtra("Link");
@@ -89,15 +88,6 @@ public class RadioActivity extends AppCompatActivity {
             }
         });
 
-
-        //Goes back to selection of radios activity page
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RadioActivity.this, SelectRadioActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
