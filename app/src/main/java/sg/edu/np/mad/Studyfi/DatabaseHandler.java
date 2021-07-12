@@ -76,7 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return tList;
     }
 
-    //
+    //Retrieve task from database
     public ToDo getTask(int id){
         ToDo task = new ToDo();
         String query = "SELECT * FROM " + TABLE_TODO;
@@ -96,6 +96,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return task;
     }
 
+    //Updates database if checkbox is ticked or not
     public void updateCheckBox(int id, int status)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -104,6 +105,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.update(TABLE_TODO, cv, COLUMN_ID + "= ?", new String[] {String.valueOf(id)});
     }
 
+    //Updates task from database
     public void updateTask(int id, String title, String date)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -113,6 +115,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.update(TABLE_TODO, cv, COLUMN_ID + "= ?", new String[] {String.valueOf(id)});
     }
 
+    //Deletes task from database
     public void deleteTask(int id)
     {
         SQLiteDatabase db = this.getWritableDatabase();

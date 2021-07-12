@@ -50,12 +50,12 @@ public class ToDoActivity extends AppCompatActivity {
         addTaskbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //Creating an alert dialog
                 final AlertDialog.Builder builder = new AlertDialog.Builder(ToDoActivity.this);
                 final EditText input = new EditText(ToDoActivity.this);
 
                 builder.setTitle("Add a task");
+                builder.setMessage("Enter your task below");
                 builder.setView(input);
                 builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     @Override
@@ -66,14 +66,17 @@ public class ToDoActivity extends AppCompatActivity {
                         if (title == null || title.trim().equals("")){
                             dialog.cancel();
                         }
+
+                        //Create new task
                         ToDo task = new ToDo();
                         task.setTitle(title);
                         task.setStatus(0);
                         task.setUpdateDate(currentDate);
+
                         databaseHandler.addTask(task);
                         toDoList.add(task);
-                        toDoList = databaseHandler.getAllTask();
                         todoAdapter.notifyDataSetChanged();
+
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

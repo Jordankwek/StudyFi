@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout photoMathFunc = findViewById(R.id.photoMathFunc);
         LinearLayout dictionaryFunc = findViewById(R.id.dictionaryFunc);
 
+        //Goes to To do activity page clicked
         toDoFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Goes to radio selection page when clicked
         radioFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -36,6 +36,7 @@ public class RadioActivity extends AppCompatActivity {
         String radioName = receivingData.getStringExtra("Title");
         radioTitle.setText(radioName);
 
+        //Plays radio when clicked
         playbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +79,7 @@ public class RadioActivity extends AppCompatActivity {
             }
         });
 
-        //Pause / stop button
+        //Stop button
         pausebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +90,7 @@ public class RadioActivity extends AppCompatActivity {
         });
 
 
+        //Goes back to selection of radios activity page
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +101,7 @@ public class RadioActivity extends AppCompatActivity {
 
     }
 
-
+    //When user goes exits radio activity page, radio stops. Will find a way to improve this feature
     @Override
     protected void onPause(){
         super.onPause();
