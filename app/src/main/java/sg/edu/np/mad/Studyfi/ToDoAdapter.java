@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,8 +50,11 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
                     databaseHandler.updateCheckBox(d.getId(), 1);
+
                 } else {
+                    Toast.makeText(context, "Undone", Toast.LENGTH_SHORT).show();
                     databaseHandler.updateCheckBox(d.getId(), 0);
                 }
             }
@@ -117,8 +121,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
                 return true;
             }
         });
-
-
     }
 
     private boolean convertToBool(int i){

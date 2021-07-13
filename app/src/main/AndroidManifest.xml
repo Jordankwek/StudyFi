@@ -14,7 +14,8 @@
         android:theme="@style/Theme.Studyfi">
         <activity android:name=".SelectRadioActivity">
         </activity>
-        <activity android:name=".RadioActivity">
+        <activity android:name=".RadioActivity"
+            android:configChanges="orientation|screenSize">
         </activity>
         <activity android:name=".ToDoActivity"></activity>
         <activity android:name=".MainActivity">
