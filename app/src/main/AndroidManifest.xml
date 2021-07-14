@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studyfi">
-        <activity android:name=".TimerActivity"></activity>
-        <activity android:name=".SelectRadioActivity" />
-        <activity android:name=".RadioActivity" />
-        <activity android:name=".ToDoActivity" />
+        <activity android:name=".SelectRadioActivity">
+        </activity>
+        <activity android:name=".RadioActivity">
+        </activity>
+        <activity android:name=".ToDoActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

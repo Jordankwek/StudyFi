@@ -37,6 +37,12 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioViewHolder>{
     public void onBindViewHolder(@NonNull RadioViewHolder holder, int position) {
         Radio radio = radioList.get(position);
         holder.radioTitle.setText(radio.getRadioName());
+        if (radio.isOffline == false) {
+            holder.radioOffline.setText("Online");
+        }
+        else{
+            holder.radioOffline.setText("Offline");
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +50,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioViewHolder>{
                 Bundle extras = new Bundle();
                 extras.putString("Link",radio.radioLink);
                 extras.putString("Title", radio.radioName);
+                extras.putBoolean("IsOffline", radio.isOffline);
 
                 Intent intent = new Intent(context, RadioActivity.class);
                 intent.putExtras(extras);

@@ -6,7 +6,7 @@ import android.widget.ImageView;
 public class Radio {
 
     public String radioName, radioLink;
-    public int radioID; //radioPic;
+    public boolean isOffline;
 
 
     public String getRadioName() {
@@ -27,13 +27,6 @@ public class Radio {
     }
 
      */
-    public int getRadioID() {
-        return radioID;
-    }
-
-    public void setRadioID(int radioID) {
-        this.radioID = radioID;
-    }
 
     public String getRadioLink() {
         return radioLink;
@@ -41,5 +34,13 @@ public class Radio {
 
     public void setRadioLink(String radioLink) {
         this.radioLink = radioLink;
+    }
+
+    public boolean isOffline() {
+        return isOffline;
+    }
+
+    public void setOffline(boolean offline) {
+        isOffline = offline;
     }
 }
