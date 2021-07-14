@@ -15,7 +15,8 @@ import android.os.CountDownTimer;
 
 public class TimerActivity extends AppCompatActivity {
 
-    long timeLeft;
+    long secondsLeft;
+    long minutesLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class TimerActivity extends AppCompatActivity {
                     timerObj.paused = false;
 
                     //Starts counting down again
-                    countDown((timeLeft / 1000), timer, startAndPauseButton, timerObj);
+                    countDown(secondsLeft, minutesLeft, timer, startAndPauseButton, timerObj);
                 }
                 else {
                     startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
@@ -57,20 +58,18 @@ public class TimerActivity extends AppCompatActivity {
         setTimerConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (timerObj.paused) {
-                    startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
-                    timerObj.paused = false;
-                }
+                startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
+                timerObj.paused = false;
 
                 Editable timeAmount = setTimerInput.getText();
                 String timeAmountString = timeAmount.toString();
-                Long timeAmountLong = Long.parseLong(timeAmountString);
+                Long minuteInput = Long.parseLong(timeAmountString);
 
                 timer.setText("00 : 00");
                 setTimerInput.setText("");
 
                 //Starts counting down
-                countDown(timeAmountLong, timer, startAndPauseButton, timerObj);
+                countDown(0, minuteInput, timer, startAndPauseButton, timerObj);
             }
         });
 
@@ -90,22 +89,30 @@ public class TimerActivity extends AppCompatActivity {
 
     CountDownTimer myCountDown;
 
-    private void countDown(long time, TextView timer, ImageView startAndPauseButton, Timer timerObj){
-        myCountDown = new CountDownTimer((60000 * time), 1000){
+    private void countDown(long secondInput, long minuteInput, TextView timer, ImageView startAndPauseButton, Timer timerObj){
+        myCountDown = new CountDownTimer((1000 * secondInput + (60000 * minuteInput)), 1000){
             public void onTick(long millisUntilFinished){
-                timeLeft = millisUntilFinished;
+                long seconds = (millisUntilFinished % 60000) / 1000;
+                long minutes = (millisUntilFinished - seconds) / 60000;
+
+                secondsLeft = seconds;
+                minutesLeft = minutes;
+
+                String secondsString = Long.toString(seconds);
+                if (seconds < 10) {
+                    secondsString = "0" + secondsString;
+                }
+
+                String minutesString = Long.toString(minutes);
+                if (minutes < 10) {
+                    minutesString = "0" + minutesString;
+                }
 
                 if (millisUntilFinished > 60000) {
-                    long seconds = millisUntilFinished % 60000;
-                    long minutes = (millisUntilFinished - seconds) / 60000;
-                    if (minutes < 10) {
-
-                    }
-                    timer.setText(minutes + " : " + seconds);
+                    timer.setText(minutesString + " : " + secondsString);
                 }
                 else {
-                    long seconds = millisUntilFinished % 60000;
-                    timer.setText("00 : " + seconds);
+                    timer.setText("00 : " + secondsString);
                 }
             }
 
