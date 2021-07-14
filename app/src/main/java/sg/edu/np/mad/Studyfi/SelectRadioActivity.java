@@ -49,7 +49,7 @@ public class SelectRadioActivity extends AppCompatActivity {
         radio5.isOffline = false;
 
         Radio radioOffline1 = new Radio();
-        radioOffline1.radioLink = "rainsound.mp3";
+        radioOffline1.radioLink = "rainsound";
         radioOffline1.radioName = "Heavy Rain sounds";
         radioOffline1.isOffline = true;
 

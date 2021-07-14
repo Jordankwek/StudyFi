@@ -82,7 +82,7 @@ public class RadioActivity extends AppCompatActivity {
             playbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(radioLink == "rainsound.mp3"){
+                    if(radioLink.equals("rainsound")){
                         pausebutton.setEnabled(true);
                         playbutton.setEnabled(false);
                         mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.rainsound);
