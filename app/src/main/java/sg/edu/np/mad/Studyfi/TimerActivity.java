@@ -22,7 +22,7 @@ public class TimerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
-
+        getSupportActionBar().hide();
         //Connect activity_timer items to TimerActivity
         TextView timer = findViewById(R.id.timer);
         ImageView startAndPauseButton = findViewById(R.id.startAndPauseButton);
