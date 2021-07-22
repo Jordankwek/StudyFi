@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "819544132484",
+    "project_id": "studyfi-19a30",
+    "storage_bucket": "studyfi-19a30.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819544132484:android:525ca3b44dc4123248abd1",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.Studyfi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "819544132484-mf3mi9m4o52ernh70eh5k8r4ljgvipmm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIDn5edtYba0EMbtPeKpotN9FxNJpvYJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819544132484-mf3mi9m4o52ernh70eh5k8r4ljgvipmm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

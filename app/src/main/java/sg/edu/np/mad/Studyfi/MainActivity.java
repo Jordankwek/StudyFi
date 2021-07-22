@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout timerFunc = findViewById(R.id.timerFunc);
         LinearLayout radioFunc = findViewById(R.id.radioFunc);
         LinearLayout photoMathFunc = findViewById(R.id.photoMathFunc);
-        LinearLayout dictionaryFunc = findViewById(R.id.dictionaryFunc);
+        LinearLayout messageFunc = findViewById(R.id.messageFunc);
 
         //Goes to To do activity page clicked
         toDoFunc.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TimerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        messageFunc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
