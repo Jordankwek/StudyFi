@@ -62,7 +62,7 @@ public class MessageActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        RecyclerView messagerv = findViewById(R.id.chatrv);
+        RecyclerView messagerv = findViewById(R.id.userRv);
         messageAdapter = new MessageAdapter(userList,MessageActivity.this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         messagerv.setLayoutManager(linearLayoutManager);

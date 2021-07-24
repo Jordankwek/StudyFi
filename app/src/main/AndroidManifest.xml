@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Studyfi"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".LoginActivity"
             android:configChanges="orientation"
