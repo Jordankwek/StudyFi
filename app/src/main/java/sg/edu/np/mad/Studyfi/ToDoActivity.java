@@ -4,38 +4,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class ToDoActivity extends AppCompatActivity {
 
     //Usage of database
     DatabaseHandler databaseHandler = new DatabaseHandler(this,null,null,1);
     ArrayList<ToDo> toDoList = new ArrayList<>();
+    Dialog addDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do);
         getSupportActionBar().hide();
+        //Access the add button
         FloatingActionButton addTaskbutton = findViewById(R.id.addTaskbutton);
+
+        addDialog = new Dialog(this);
+
 
         //Get all the task from the database
         toDoList = databaseHandler.getAllTask();
@@ -51,43 +50,43 @@ public class ToDoActivity extends AppCompatActivity {
         addTaskbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Creating an alert dialog
-                final AlertDialog.Builder builder = new AlertDialog.Builder(ToDoActivity.this);
 
-                final EditText input = new EditText(ToDoActivity.this);
-
-                builder.setTitle("Add a task");
-                builder.setMessage("Enter your task below");
-                builder.setView(input);
-                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                addDialog.setContentView(R.layout.add_task_dialog);
+                addDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Button addBtn = addDialog.findViewById(R.id.addBtn);
+                Button cancelBtn = addDialog.findViewById(R.id.cancelBtn);
+                EditText editText = addDialog.findViewById(R.id.addTask);
+                addBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
                         Calendar calendar = Calendar.getInstance();
                         String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-                        String title = input.getText().toString();
-                        if (title == null || title.trim().equals("")){
-                            dialog.cancel();
+                        String title = editText.getText().toString();
+                        if (title==null || title.trim().equals(""))
+                        {
+                            addDialog.cancel();
                         }
+                        else {
+                            ToDo task = new ToDo();
+                            task.setTitle(title);
+                            task.setStatus(0);
+                            task.setUpdateDate(currentDate);
 
-                        //Create new task
-                        ToDo task = new ToDo();
-                        task.setTitle(title);
-                        task.setStatus(0);
-                        task.setUpdateDate(currentDate);
-
-                        databaseHandler.addTask(task);
-                        toDoList.add(task);
-                        todoAdapter.notifyDataSetChanged();
-
+                            databaseHandler.addTask(task);
+                            toDoList.add(task);
+                            todoAdapter.notifyDataSetChanged();
+                            addDialog.dismiss();
+                        }
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                cancelBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                    public void onClick(View v) {
+                        addDialog.cancel();
                     }
                 });
-                builder.show();
+
+                addDialog.show();
 
             }
         });

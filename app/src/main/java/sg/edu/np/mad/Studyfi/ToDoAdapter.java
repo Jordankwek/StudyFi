@@ -1,11 +1,15 @@
 package sg.edu.np.mad.Studyfi;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -64,6 +68,42 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
         holder.txtTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Dialog editDialog;
+                editDialog = new Dialog(context);
+
+                editDialog.setContentView(R.layout.edit_task_dialog);
+                editDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                Button editBtn = editDialog.findViewById(R.id.confirmBtn);
+                Button cancelBtn = editDialog.findViewById(R.id.editCancel);
+                EditText editText = editDialog.findViewById(R.id.edittedTask);
+
+                editBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Calendar calendar = Calendar.getInstance();
+                        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+                        String title = editText.getText().toString();
+                        if (title == null || title.trim().equals("")){
+                            editDialog.cancel();
+                        }
+                        else {
+                            databaseHandler.updateTask(d.getId(), title, currentDate);
+                            toDoList = databaseHandler.getAllTask();
+                            notifyDataSetChanged();
+                            editDialog.dismiss();
+                        }
+                    }
+                });
+                cancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editDialog.cancel();
+                    }
+                });
+                editDialog.show();
+
+                /*
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 final EditText input = new EditText(context);
                 builder.setTitle("Edit task");
@@ -90,6 +130,8 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
                     }
                 });
                 builder.show();
+
+                 */
             }
         });
 

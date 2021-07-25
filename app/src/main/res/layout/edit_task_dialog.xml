@@ -21,11 +21,11 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/addTitle"
+                android:id="@+id/editTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Add a task"
+                android:text="Edit task"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/addTask"
+                android:id="@+id/edittedTask"
                 android:layout_width="208dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="61dp"
@@ -45,11 +45,11 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addTitle"
+                app:layout_constraintTop_toBottomOf="@+id/editTitle"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/cancelBtn"
+                android:id="@+id/editCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="56dp"
@@ -61,13 +61,13 @@
                 app:backgroundTint="#D11A2A"
                 app:cornerRadius="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/addBtn"
+                app:layout_constraintEnd_toStartOf="@+id/confirmBtn"
                 app:layout_constraintHorizontal_bias="0.138"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addTask" />
+                app:layout_constraintTop_toBottomOf="@+id/edittedTask" />
 
             <Button
-                android:id="@+id/addBtn"
+                android:id="@+id/confirmBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -75,12 +75,12 @@
                 android:layout_marginBottom="20dp"
                 android:background="#A4C639"
                 android:padding="5dp"
-                android:text="Add"
+                android:text="Confirm"
                 app:backgroundTint="#99CC33"
                 app:cornerRadius="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addTask" />
+                app:layout_constraintTop_toBottomOf="@+id/edittedTask" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
