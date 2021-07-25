@@ -54,13 +54,16 @@ public class ChatActivity extends AppCompatActivity {
         //Receiver id
         receiverId = getIntent().getStringExtra("uid");
 
+        //Getting the Textview in the layout for the receiver's name
         name = findViewById(R.id.receiverName);
+        //Setting receiver's name in the textview
         name.setText(receiverName);
 
+        //Getting the send button
         sendBtn = findViewById(R.id.sendBtn);
         chatMessage = findViewById(R.id.chatMessage);
 
-        senderID = firebaseAuth.getUid();
+        senderID = firebaseAuth.getCurrentUser().getUid();
         senderRoom = senderID + receiverId;
         receiverRoom = receiverId + senderID;
 
@@ -83,9 +86,20 @@ public class ChatActivity extends AppCompatActivity {
                 for(DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
                     Message message = snapshot.getValue(Message.class);
+
+                    //If receiverID is same as currentuserID
+                    
+                    /*
+                    if(message.receiverID.contentEquals(senderID) == true &&
+                            message.UIDcurrentuser.contentEquals(mAuth.getUid()) == true
+                            || message.toUIDUser.contentEquals(mAuth.getUid()) == true
+                            && message.UIDcurrentuser.contentEquals(sendToUserID) == true )
+
+                     */
                     messageArrayList.add(message);
                 }
                 chatAdapter.notifyDataSetChanged();
+                chatRv.smoothScrollToPosition(chatRv.getAdapter().getItemCount());
             }
 
             @Override
@@ -105,7 +119,7 @@ public class ChatActivity extends AppCompatActivity {
                 }
                 chatMessage.setText("");
                 Date date = new Date();
-                Message messages = new Message(message,senderID,date.getTime());
+                Message messages = new Message(message,senderID,receiverId,date.getTime());
 
                 database.getReference().child("chats")
                         .child(senderRoom)

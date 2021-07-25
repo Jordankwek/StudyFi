@@ -193,7 +193,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="27dp"
                     android:layout_margin="5dp"
-                    app:srcCompat="@drawable/radio_icon"
+                    app:srcCompat="@drawable/ic_baseline_radio_24"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
@@ -244,9 +244,9 @@
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    app:srcCompat="@drawable/message_icon"
+                    app:srcCompat="@drawable/ic_baseline_message_24"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView

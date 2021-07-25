@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -37,7 +38,6 @@ public class MessageActivity extends AppCompatActivity {
         userList = new ArrayList<>();
         //To reading or writing of data
         DatabaseReference reference = database.getReference().child("Users");
-
         //receive events about data changes to user
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -45,7 +45,10 @@ public class MessageActivity extends AppCompatActivity {
                 for(DataSnapshot snapShot: dataSnapshot.getChildren())
                 {
                     User user = snapShot.getValue(User.class);
-                    userList.add(user);
+                    //Remove current user from the recyclerview
+                    if(!(auth.getCurrentUser().getUid().equals(user.uid))) {
+                        userList.add(user);
+                    }
                 }
                 messageAdapter.notifyDataSetChanged();
             }

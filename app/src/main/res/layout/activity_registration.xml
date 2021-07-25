@@ -31,9 +31,9 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="95dp"
-            android:layout_height="95dp"
-            app:srcCompat="@drawable/profile_icon" />
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
         <EditText
 
