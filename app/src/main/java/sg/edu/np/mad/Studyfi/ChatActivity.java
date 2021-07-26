@@ -64,10 +64,12 @@ public class ChatActivity extends AppCompatActivity {
         chatMessage = findViewById(R.id.chatMessage);
 
         senderID = firebaseAuth.getCurrentUser().getUid();
+        /*
         senderRoom = senderID + receiverId;
         receiverRoom = receiverId + senderID;
+         */
 
-        DatabaseReference chatReference = database.getReference().child("chats").child(senderRoom).child("messages");
+        DatabaseReference chatReference = database.getReference().child("chats");
 
         RecyclerView chatRv = findViewById(R.id.chatRv);
         chatAdapter = new ChatAdapter(ChatActivity.this, messageArrayList);
@@ -76,7 +78,6 @@ public class ChatActivity extends AppCompatActivity {
         //Make recyclerview show rows from the bottom
         linearLayoutManager.setStackFromEnd(true);
         chatRv.setAdapter(chatAdapter);
-
 
         chatReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -88,15 +89,12 @@ public class ChatActivity extends AppCompatActivity {
                     Message message = snapshot.getValue(Message.class);
 
                     //If receiverID is same as currentuserID
-                    
-                    /*
-                    if(message.receiverID.contentEquals(senderID) == true &&
-                            message.UIDcurrentuser.contentEquals(mAuth.getUid()) == true
-                            || message.toUIDUser.contentEquals(mAuth.getUid()) == true
-                            && message.UIDcurrentuser.contentEquals(sendToUserID) == true )
-
-                     */
-                    messageArrayList.add(message);
+                    if(message.receiverID.equals(receiverId) &&
+                            message.senderID.equals(firebaseAuth.getUid())||
+                    message.receiverID.equals(firebaseAuth.getUid()) &&
+                    message.senderID.equals(receiverId)) {
+                        messageArrayList.add(message);
+                    }
                 }
                 chatAdapter.notifyDataSetChanged();
                 chatRv.smoothScrollToPosition(chatRv.getAdapter().getItemCount());
@@ -122,26 +120,9 @@ public class ChatActivity extends AppCompatActivity {
                 Message messages = new Message(message,senderID,receiverId,date.getTime());
 
                 database.getReference().child("chats")
-                        .child(senderRoom)
-                        .child("messages")
                         .push()
-                        .setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        database.getReference().child("chats")
-                                .child(receiverRoom)
-                                .child("messages")
-                                .push()
-                                .setValue(messages).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        .setValue(messages);
 
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-
-                            }
-                        });
-                    }
-
-                });
             }
         });
     }

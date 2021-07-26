@@ -1,10 +1,12 @@
 package sg.edu.np.mad.Studyfi;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -71,5 +73,28 @@ public class MessageActivity extends AppCompatActivity {
         messagerv.setLayoutManager(linearLayoutManager);
         messagerv.setAdapter(messageAdapter);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MessageActivity.this);
+        builder.setTitle("Log Out");
+        builder.setMessage("Are you sure you want to log out?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                auth.signOut();
+                Intent intent = new Intent(MessageActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 }
