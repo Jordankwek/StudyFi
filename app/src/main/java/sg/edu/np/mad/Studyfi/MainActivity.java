@@ -1,7 +1,9 @@
 package sg.edu.np.mad.Studyfi;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout timerFunc = findViewById(R.id.timerFunc);
         LinearLayout radioFunc = findViewById(R.id.radioFunc);
         LinearLayout photoMathFunc = findViewById(R.id.photoMathFunc);
-        LinearLayout dictionaryFunc = findViewById(R.id.dictionaryFunc);
+        LinearLayout messageFunc = findViewById(R.id.messageFunc);
 
         //Goes to To do activity page clicked
         toDoFunc.setOnClickListener(new View.OnClickListener() {
@@ -48,5 +50,33 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        messageFunc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Exit Application");
+        builder.setMessage("Are you sure you want exit the app?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 }

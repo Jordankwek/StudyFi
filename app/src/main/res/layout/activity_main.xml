@@ -182,7 +182,7 @@
             <LinearLayout
                 android:id="@+id/radioFunc"
                 android:layout_width="56dp"
-                android:layout_height="wrap_content"
+                android:layout_height="63dp"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/background_btn"
@@ -191,9 +191,9 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="22dp"
+                    android:layout_height="27dp"
                     android:layout_margin="5dp"
-                    app:srcCompat="@drawable/radio_icon"
+                    app:srcCompat="@drawable/ic_baseline_radio_24"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
@@ -232,7 +232,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/dictionaryFunc"
+                android:id="@+id/messageFunc"
                 android:layout_width="53dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -246,7 +246,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    app:srcCompat="@drawable/ic_baseline_library_books_24"
+                    app:srcCompat="@drawable/ic_baseline_message_24"
                     tools:ignore="VectorDrawableCompat" />
 
                 <TextView
@@ -254,7 +254,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Dictionary"
+                    android:text="Message"
                     android:textAlignment="center"
                     android:textStyle="bold" />
             </LinearLayout>
