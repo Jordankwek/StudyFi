@@ -46,6 +46,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapShot: dataSnapshot.getChildren())
                 {
+
                     User user = snapShot.getValue(User.class);
                     //Remove current user from the recyclerview
                     if(!(auth.getCurrentUser().getUid().equals(user.uid))) {

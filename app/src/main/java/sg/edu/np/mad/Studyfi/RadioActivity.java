@@ -80,19 +80,29 @@ public class RadioActivity extends AppCompatActivity {
         }
         else{
             playbutton.setOnClickListener(new View.OnClickListener() {
+                int link;
                 @Override
                 public void onClick(View v) {
                     if(radioLink.equals("rainsound")){
-                        pausebutton.setEnabled(true);
-                        playbutton.setEnabled(false);
-                        mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.rainsound);
-                        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                            @Override
-                            public void onPrepared(MediaPlayer mp) {
-                                mediaPlayer.start();
-                            }
-                        });
+                        link = R.raw.rainsound;
                     }
+                    else if(radioLink.equals("relaxingbell"))
+                    {
+                        link = R.raw.relaxingbell;
+                    }
+                    else if(radioLink.equals("forestchill"))
+                    {
+                        link = R.raw.forestchill;
+                    }
+                    pausebutton.setEnabled(true);
+                    playbutton.setEnabled(false);
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(),link);
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mp) {
+                            mediaPlayer.start();
+                        }
+                    });
                 }
             });
 
