@@ -39,6 +39,7 @@
                 android:layout_marginStart="61dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="56dp"
+                android:maxLength="20"
                 android:ems="10"
                 android:hint="Enter a task..."
                 android:inputType="textPersonName"

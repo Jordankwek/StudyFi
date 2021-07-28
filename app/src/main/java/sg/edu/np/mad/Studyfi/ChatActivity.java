@@ -76,7 +76,7 @@ public class ChatActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         chatRv.setLayoutManager(linearLayoutManager);
         //Make recyclerview show rows from the bottom
-        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setStackFromEnd(false);
         chatRv.setAdapter(chatAdapter);
 
         chatReference.addValueEventListener(new ValueEventListener() {
