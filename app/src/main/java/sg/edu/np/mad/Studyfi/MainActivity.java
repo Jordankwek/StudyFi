@@ -58,7 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Call function to start the notification timer
+
     }
+
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
