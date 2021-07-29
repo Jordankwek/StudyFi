@@ -1,16 +1,21 @@
 package sg.edu.np.mad.Studyfi;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +65,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Call function to start the notification timer
+        Intent notificationIntent = new Intent(getApplicationContext(), MotivationalQuoteActivity.class);
+        PendingIntent contentIntent = PendingIntent.getService(getApplicationContext(), 0, notificationIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
 
+        AlarmManager alarmManager = (AlarmManager) getSystemService(getApplicationContext().ALARM_SERVICE);
+        alarmManager.cancel(contentIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + AlarmManager.INTERVAL_DAY / 6,
+                AlarmManager.INTERVAL_DAY / 6,
+                contentIntent);
     }
 
     @Override
