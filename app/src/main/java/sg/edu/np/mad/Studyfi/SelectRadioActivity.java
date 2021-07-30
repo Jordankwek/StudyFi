@@ -32,7 +32,6 @@ public class SelectRadioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_radio);
         getSupportActionBar().hide();
 
-
         //To access firebase
         auth = FirebaseAuth.getInstance();
         //To access database
@@ -61,6 +60,8 @@ public class SelectRadioActivity extends AppCompatActivity {
             }
         });
 
+        //Creating offline song objects
+
         Radio songOffline1 = new Radio();
         songOffline1.radioLink = "lovejazz";
         songOffline1.radioName = "Love Jazz";
@@ -81,11 +82,13 @@ public class SelectRadioActivity extends AppCompatActivity {
         songOffline4.radioName = "Slow Jazz";
         songOffline4.isOffline = true;
 
+        //Add songs to a list
         radioList.add(songOffline1);
         radioList.add(songOffline2);
         radioList.add(songOffline3);
         radioList.add(songOffline4);
 
+        //Radio selecting recyclerview
         RecyclerView selectradiorv = findViewById(R.id.radiorv);
         radioAdapter = new RadioAdapter(radioList, getApplicationContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+//Radio viewholder
 public class RadioViewHolder extends RecyclerView.ViewHolder {
     TextView radioTitle, radioOffline;
     //ImageView radioImage;

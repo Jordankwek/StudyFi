@@ -18,6 +18,7 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioViewHolder>{
     private ArrayList<Radio> radioList;
     private Context context;
 
+    //Constructor
     public RadioAdapter(ArrayList<Radio> input, Context context){
         radioList = input;
         this.context = context;
@@ -36,7 +37,11 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull RadioViewHolder holder, int position) {
         Radio radio = radioList.get(position);
+
+        //Setting the radio station name
         holder.radioTitle.setText(radio.getRadioName());
+
+        //Setting whether radio is offline or online
         if (radio.isOffline == false) {
             holder.radioOffline.setText("Online");
         }
@@ -47,6 +52,8 @@ public class RadioAdapter extends RecyclerView.Adapter<RadioViewHolder>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Sending data to radioactivity
                 Bundle extras = new Bundle();
                 extras.putString("Link",radio.radioLink);
                 extras.putString("Title", radio.radioName);

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class RadioActivity extends AppCompatActivity {
 
+    //Mediaplayer
     private static MediaPlayer mediaPlayer = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +30,13 @@ public class RadioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_radio);
         getSupportActionBar().hide();
 
+        //Pause button
         ImageButton pausebutton = findViewById(R.id.pauseRadio);
+        //Play button
         ImageButton playbutton = findViewById(R.id.playRadio);
+        //Radio station name
         TextView radioTitle = findViewById(R.id.radioTitle);
+        //Radio link reference to credit for copyright
         TextView reference = findViewById(R.id.reference);
 
         //Receive intent data
@@ -39,8 +44,13 @@ public class RadioActivity extends AppCompatActivity {
         String radioLink = receivingData.getStringExtra("Link");
         String radioName = receivingData.getStringExtra("Title");
         Boolean radioInternet = receivingData.getBooleanExtra("IsOffline", false);
+
+        //Setting reference
         reference.setText("Radio: " + radioLink);
+        //Setting radioname
         radioTitle.setText(radioName);
+
+        //Create new mediaplayer
         mediaPlayer = new MediaPlayer();
         /*
         if (mediaPlayer == null) {
@@ -57,6 +67,8 @@ public class RadioActivity extends AppCompatActivity {
                 mediaPlayer.release();
             }
              */
+
+            //When user clicks play button
             playbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,6 +95,8 @@ public class RadioActivity extends AppCompatActivity {
                     } catch (IllegalStateException e) {
                         e.printStackTrace();
                     }
+
+                    //Wait for the mediaplayer to prepare
                     mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 
                         public void onPrepared(MediaPlayer mp) {
@@ -115,6 +129,8 @@ public class RadioActivity extends AppCompatActivity {
                     {
                         link = R.raw.romantic;
                     }
+
+                    //When user presses the play button, it gets disabled and pause button gets enabled
                     pausebutton.setEnabled(true);
                     playbutton.setEnabled(false);
                     mediaPlayer = MediaPlayer.create(getApplicationContext(),link);
@@ -134,6 +150,8 @@ public class RadioActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mediaPlayer.pause();
+
+                //When user presses pause button, it gets disabled and play button gets enabled
                 playbutton.setEnabled(true);
                 pausebutton.setEnabled(false);
             }
@@ -143,7 +161,6 @@ public class RadioActivity extends AppCompatActivity {
     }
 
     //When user goes exits radio activity page, radio stops. Will find a way to improve this feature
-
     @Override
     protected void onPause(){
         super.onPause();

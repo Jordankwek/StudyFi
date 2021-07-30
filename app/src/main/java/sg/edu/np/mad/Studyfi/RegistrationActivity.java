@@ -23,10 +23,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
+    //Sign in text if user has an account
     TextView signInTxt;
+    //Registration info
     EditText regName, regEmail, regPassword, regcPassword;
+    //Sign up button
     Button signUpBtn;
+    //Initialize auth
     private FirebaseAuth auth;
+    //email pattern for validation
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override
@@ -35,11 +40,15 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         getSupportActionBar().hide();
 
+        //Initialize firebase auth
         auth = FirebaseAuth.getInstance();
+        //Accessing database
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://studyfi-19a30-default-rtdb.asia-southeast1.firebasedatabase.app/");
+
+        //Reference to database data
         DatabaseReference databaseReference = database.getReference();
 
-
+        //Getting from layout page
         signInTxt = findViewById(R.id.signInTxt);
         regName = findViewById(R.id.nameReg);
         regEmail = findViewById(R.id.emailReg);
@@ -47,54 +56,69 @@ public class RegistrationActivity extends AppCompatActivity {
         regcPassword = findViewById(R.id.cPasswordReg);
         signUpBtn = findViewById(R.id.signUpBtn);
 
+        //When user clicks on sign up button
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Retrieving user registration input
                 String name = regName.getText().toString();
                 String email = regEmail.getText().toString();
                 String password = regPassword.getText().toString();
                 String cPassword = regcPassword.getText().toString();
 
-
+                //Validation for empty name, email, password and confirm password
                 if(TextUtils.isEmpty(name) || TextUtils.isEmpty(email) ||
                 TextUtils.isEmpty(password) || TextUtils.isEmpty(cPassword))
                 {
                     Toast.makeText(RegistrationActivity.this, "Enter Valid Input", Toast.LENGTH_SHORT).show();
                 }
+                //Validation for email matching pattern
                 else if (!email.matches(emailPattern))
                 {
                     regEmail.setError("Enter Valid Email");
                     Toast.makeText(RegistrationActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT).show();
                 }
+                //Validation for confirm password and password if they are the same
                 else if (!password.equals(cPassword))
                 {
                     Toast.makeText(RegistrationActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();
                 }
+                //Validation for password length less than 6
                 else if (password.length()<6)
                 {
                     Toast.makeText(RegistrationActivity.this, "Enter 6 Character Password", Toast.LENGTH_SHORT);
                 }
+                //If input passes validation
                 else {
+                    //Addition of new user to firebase
                     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 DatabaseReference reference = database.getReference().child("Users").child(auth.getUid());
+                                //Creating new user object
                                 User user = new User();
                                 user.uid = auth.getUid();
                                 user.email = email;
                                 user.name = name;
+                                //add user to firebase
                                 addDatatoFirebase(user.uid, name, email);
+
+                                //Goes to message activity after user created
                                 Intent intent = new Intent(RegistrationActivity.this, MessageActivity.class);
                                 startActivity(intent);
                                 //FirebaseUser currentUser = auth.getCurrentUser();
-                            } else {
+                            }
+                            //If creation of user fails
+                            else {
                                 Toast.makeText(RegistrationActivity.this, "Error creating new user!", Toast.LENGTH_SHORT);
                             }
                         }
                     });
                 }
             }
+
+            //Add user to firebase
             private void addDatatoFirebase(String uid, String name, String email)
             {
                 User user = new User();
@@ -105,6 +129,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
+        //If user already has an account
         signInTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

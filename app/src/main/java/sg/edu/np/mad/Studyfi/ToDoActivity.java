@@ -21,9 +21,11 @@ import java.util.Calendar;
 
 public class ToDoActivity extends AppCompatActivity {
 
-    //Usage of database
+    //Usage of sql database
     DatabaseHandler databaseHandler = new DatabaseHandler(this,null,null,1);
+    //List to store all the to do list items
     ArrayList<ToDo> toDoList = new ArrayList<>();
+    //Custom add dialog
     Dialog addDialog;
 
     @Override
@@ -34,13 +36,14 @@ public class ToDoActivity extends AppCompatActivity {
         //Access the add button
         FloatingActionButton addTaskbutton = findViewById(R.id.addTaskbutton);
 
+        //Custom add dialog
         addDialog = new Dialog(this);
 
 
         //Get all the task from the database
         toDoList = databaseHandler.getAllTask();
 
-        //Binding of data, viewholder and adapter to the rv
+        //Binding of data, viewholder and adapter to the to do to do rv
         RecyclerView todorv = findViewById(R.id.todorv);
         ToDoAdapter todoAdapter = new ToDoAdapter(toDoList, getApplicationContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -51,7 +54,7 @@ public class ToDoActivity extends AppCompatActivity {
         addTaskbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //Custom add dialog
                 addDialog.setContentView(R.layout.add_task_dialog);
                 addDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 Button addBtn = addDialog.findViewById(R.id.addBtn);
@@ -63,16 +66,21 @@ public class ToDoActivity extends AppCompatActivity {
                         Calendar calendar = Calendar.getInstance();
                         String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
                         String title = editText.getText().toString();
+
+                        //If user input is empty
                         if (title==null || title.trim().equals(""))
                         {
                             addDialog.cancel();
                         }
+
+                        //Else add new task
                         else {
                             ToDo task = new ToDo();
                             task.setTitle(title);
                             task.setStatus(0);
                             task.setUpdateDate(currentDate);
 
+                            //Add task to database
                             databaseHandler.addTask(task);
                             toDoList.add(task);
                             addDialog.dismiss();
@@ -82,6 +90,8 @@ public class ToDoActivity extends AppCompatActivity {
                         startActivity(getIntent());
                     }
                 });
+
+                //User cancels
                 cancelBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

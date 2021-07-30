@@ -6,6 +6,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+//Receiver view holder
 public class ReceiverViewHolder extends RecyclerView.ViewHolder {
 
     TextView txtMessage;

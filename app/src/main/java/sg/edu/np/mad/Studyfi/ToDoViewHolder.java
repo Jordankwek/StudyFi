@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+//To do view holder
 public class ToDoViewHolder extends RecyclerView.ViewHolder {
     TextView txtTitle, txtDate;
     CheckBox checkBox;
