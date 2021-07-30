@@ -26,6 +26,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
     private ArrayList<ToDo> toDoList;
     private DatabaseHandler databaseHandler;
 
+    //Constructor
     public ToDoAdapter(ArrayList<ToDo> input, Context context) {
         toDoList = input;
         databaseHandler = new DatabaseHandler(context, null, null, 1);
@@ -42,6 +43,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
         return new ToDoViewHolder(item);
     }
 
+    //Bind input to viewholder
     @Override
     public void onBindViewHolder(@NonNull ToDoViewHolder holder, int position) {
         Context context = holder.itemView.getContext();
@@ -51,13 +53,19 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
 
         //If user checks the checkbox, it will be saved to the database
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            //If user checks or uncheck the checkbox
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    //Update database bool value to true
+                    //used value 1 cause database cannot store true or false only 1 or 0
                     databaseHandler.updateCheckBox(d.getId(), 1);
+
+                    //If user checks the box, prompts user to deleted
                     final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setTitle("Delete task");
-                    builder.setMessage("Are you sure you want to remove this task?");
+                    builder.setTitle("Completed task!");
+                    builder.setMessage("Do you want to remove this task?");
                     builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -86,6 +94,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
             @Override
             public void onClick(View v) {
 
+                //Custom edit dialog
                 Dialog editDialog;
                 editDialog = new Dialog(context);
 
@@ -95,15 +104,19 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
                 Button cancelBtn = editDialog.findViewById(R.id.editCancel);
                 EditText editText = editDialog.findViewById(R.id.edittedTask);
 
+                //Click on edit button
                 editBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Calendar calendar = Calendar.getInstance();
                         String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
                         String title = editText.getText().toString();
+
+                        //If input is empty
                         if (title == null || title.trim().equals("")){
                             editDialog.cancel();
                         }
+                        //update database when title editted
                         else {
                             databaseHandler.updateTask(d.getId(), title, currentDate);
                             toDoList = databaseHandler.getAllTask();
@@ -122,16 +135,17 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
 
             }
         });
-
+        //Set latest task edit date
         holder.txtDate.setText((d.getUpdateDate()));
 
-        //Deleting of task
+        //Deleting of task when press and hold
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                //Dialog for deleting task
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Completed task!");
-                builder.setMessage("Do you want to remove this task?");
+                builder.setTitle("Delete Task");
+                builder.setMessage("Are you sure you want to remove this task?");
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -152,6 +166,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
         });
     }
 
+    //Converting into to bool values
     private boolean convertToBool(int i){
         if (i == 0){
             return false;

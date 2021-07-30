@@ -1,5 +1,7 @@
 package sg.edu.np.mad.Studyfi;
 
+
+//To do task class
 public class ToDo {
     public int id, status;
     public String title, updateDate;

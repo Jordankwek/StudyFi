@@ -1,5 +1,6 @@
 package sg.edu.np.mad.Studyfi;
 
+//Timer class
 public class Timer {
     public long amountOfTimeLeft;
     public boolean paused;

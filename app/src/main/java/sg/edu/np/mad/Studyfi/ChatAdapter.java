@@ -19,6 +19,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
     int ITEM_SEND = 1;
     int ITEM_RECEIVE = 2;
 
+    //Constructor
     public ChatAdapter(Context context, ArrayList<Message> messageArrayList) {
         this.context = context;
         this.messageArrayList = messageArrayList;
@@ -28,6 +29,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        //Inflating different viewholders based on sender and receiver
         if(viewType==ITEM_SEND)
         {
             View item = LayoutInflater.from(parent.getContext()).inflate(
@@ -51,6 +53,7 @@ public class ChatAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
+        //Binding of data
         Message message = messageArrayList.get(position);
         if(holder.getClass()==SenderViewHolder.class)
         {
