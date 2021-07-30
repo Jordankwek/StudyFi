@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class RadioActivity extends AppCompatActivity {
 
-    MediaPlayer mediaPlayer;
+    private static MediaPlayer mediaPlayer = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,22 +31,36 @@ public class RadioActivity extends AppCompatActivity {
 
         ImageButton pausebutton = findViewById(R.id.pauseRadio);
         ImageButton playbutton = findViewById(R.id.playRadio);
-        ImageView radioPicture = findViewById(R.id.radioImage);
         TextView radioTitle = findViewById(R.id.radioTitle);
-        mediaPlayer = new MediaPlayer();
+        TextView reference = findViewById(R.id.reference);
 
         //Receive intent data
         Intent receivingData = getIntent();
         String radioLink = receivingData.getStringExtra("Link");
         String radioName = receivingData.getStringExtra("Title");
         Boolean radioInternet = receivingData.getBooleanExtra("IsOffline", false);
+        reference.setText("Radio: " + radioLink);
         radioTitle.setText(radioName);
+        mediaPlayer = new MediaPlayer();
+        /*
+        if (mediaPlayer == null) {
+            mediaPlayer = new MediaPlayer();
+        }
+         */
 
-        //Plays radio when clicked
+        //Plays online radio when clicked
         if (radioInternet == false) {
+            /*
+            if(mediaPlayer != null)
+            {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+             */
             playbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(RadioActivity.this, "Please wait...", Toast.LENGTH_SHORT).show();
                     String url = radioLink; // your URL here
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     pausebutton.setEnabled(true);
@@ -78,21 +92,28 @@ public class RadioActivity extends AppCompatActivity {
                 }
             });
         }
+
+        //When offline song is clicked
         else{
+            reference.setText("Music: https://www.bensound.com");
             playbutton.setOnClickListener(new View.OnClickListener() {
                 int link;
                 @Override
                 public void onClick(View v) {
-                    if(radioLink.equals("rainsound")){
-                        link = R.raw.rainsound;
+                    if(radioLink.equals("lovejazz")){
+                        link = R.raw.lovejazz;
                     }
-                    else if(radioLink.equals("relaxingbell"))
+                    else if(radioLink.equals("memories"))
                     {
-                        link = R.raw.relaxingbell;
+                        link = R.raw.memories;
                     }
-                    else if(radioLink.equals("forestchill"))
+                    else if(radioLink.equals("relaxing"))
                     {
-                        link = R.raw.forestchill;
+                        link = R.raw.relaxing;
+                    }
+                    else if(radioLink.equals("romantic"))
+                    {
+                        link = R.raw.romantic;
                     }
                     pausebutton.setEnabled(true);
                     playbutton.setEnabled(false);
@@ -112,7 +133,7 @@ public class RadioActivity extends AppCompatActivity {
         pausebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.stop();
+                mediaPlayer.pause();
                 playbutton.setEnabled(true);
                 pausebutton.setEnabled(false);
             }
@@ -122,11 +143,14 @@ public class RadioActivity extends AppCompatActivity {
     }
 
     //When user goes exits radio activity page, radio stops. Will find a way to improve this feature
+
     @Override
     protected void onPause(){
         super.onPause();
         mediaPlayer.stop();
     }
+
+
     //Will implement more features to allow users to
     // use app while listening to songs at the same time
 

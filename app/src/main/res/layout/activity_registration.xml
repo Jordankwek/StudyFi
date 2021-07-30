@@ -21,16 +21,16 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/registerAccTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="Register Account"
-            android:textSize="45sp"
+            android:textSize="36sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/registerIcon"
             android:layout_width="110dp"
             android:layout_height="110dp"
             app:srcCompat="@drawable/ic_baseline_account_circle_24" />
@@ -109,6 +109,7 @@
 
             <TextView
 
+                android:id="@+id/accText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"

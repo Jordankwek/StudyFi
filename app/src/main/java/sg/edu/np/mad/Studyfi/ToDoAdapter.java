@@ -54,14 +54,31 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
                     databaseHandler.updateCheckBox(d.getId(), 1);
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle("Delete task");
+                    builder.setMessage("Are you sure you want to remove this task?");
+                    builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            databaseHandler.deleteTask(d.getId());
+                            toDoList = databaseHandler.getAllTask();
+                            notifyDataSetChanged();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    builder.show();
 
                 } else {
-                    Toast.makeText(context, "Undone", Toast.LENGTH_SHORT).show();
                     databaseHandler.updateCheckBox(d.getId(), 0);
                 }
             }
+
         });
 
         //Editing of title
@@ -103,35 +120,6 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
                 });
                 editDialog.show();
 
-                /*
-                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                final EditText input = new EditText(context);
-                builder.setTitle("Edit task");
-                builder.setView(input);
-                builder.setCancelable(false);
-                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Calendar calendar = Calendar.getInstance();
-                        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
-                        String title = input.getText().toString();
-                        if (title == null || title.trim().equals("")){
-                            dialog.cancel();
-                        }
-                        databaseHandler.updateTask(d.getId(), title, currentDate);
-                        toDoList = databaseHandler.getAllTask();
-                        notifyDataSetChanged();
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.show();
-
-                 */
             }
         });
 
@@ -141,10 +129,9 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-
                 final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Delete task");
-                builder.setMessage("Are you sure you want to remove this task?");
+                builder.setTitle("Completed task!");
+                builder.setMessage("Do you want to remove this task?");
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
