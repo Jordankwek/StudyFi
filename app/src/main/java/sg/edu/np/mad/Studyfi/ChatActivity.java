@@ -28,12 +28,18 @@ public class ChatActivity extends AppCompatActivity {
 
     //Receiver name
     TextView name;
-    String receiverName, receiverId, senderID, senderRoom, receiverRoom;
+    //Receiver and sender info
+    String receiverName, receiverId, senderID;
+    //Send button
     CardView sendBtn;
+    //User message input
     EditText chatMessage;
+    //Access realtime database
     FirebaseDatabase database;
+    //Get user authentication details
     FirebaseAuth firebaseAuth;
-    ArrayList<Message> messageArrayList;
+
+    //Chat adapter for the recyclerview
     ChatAdapter chatAdapter;
 
     @Override
@@ -42,11 +48,12 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         getSupportActionBar().hide();
 
-        //Initialize arraylist
+        //Initialize arraylist to store messages
         ArrayList<Message> messageArrayList = new ArrayList<>();
 
-
+        //Accessing database
         database = FirebaseDatabase.getInstance("https://studyfi-19a30-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        //Initialize Firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
 
         //Receiver name
@@ -64,13 +71,11 @@ public class ChatActivity extends AppCompatActivity {
         chatMessage = findViewById(R.id.chatMessage);
 
         senderID = firebaseAuth.getCurrentUser().getUid();
-        /*
-        senderRoom = senderID + receiverId;
-        receiverRoom = receiverId + senderID;
-         */
 
+        //reference to chats in firebase
         DatabaseReference chatReference = database.getReference().child("chats");
 
+        //Messaging chats recyclerview
         RecyclerView chatRv = findViewById(R.id.chatRv);
         chatAdapter = new ChatAdapter(ChatActivity.this, messageArrayList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -79,16 +84,16 @@ public class ChatActivity extends AppCompatActivity {
         linearLayoutManager.setStackFromEnd(false);
         chatRv.setAdapter(chatAdapter);
 
+        //When changes is made to the chat in the firebase
         chatReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 messageArrayList.clear();
                 for(DataSnapshot snapshot:dataSnapshot.getChildren())
                 {
                     Message message = snapshot.getValue(Message.class);
 
-                    //If receiverID is same as currentuserID
+                    //Checks if the receiver and sender info matches
                     if(message.receiverID.equals(receiverId) &&
                             message.senderID.equals(firebaseAuth.getUid())||
                     message.receiverID.equals(firebaseAuth.getUid()) &&
@@ -106,6 +111,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        //When user sends a message
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

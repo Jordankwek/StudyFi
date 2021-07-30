@@ -61,13 +61,14 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
-
+        //In the case that user is not logged in
         if(auth.getCurrentUser()==null)
         {
             Intent intent = new Intent(MessageActivity.this, RegistrationActivity.class);
             startActivity(intent);
         }
 
+        //Recyclerview for Messaging users
         RecyclerView messagerv = findViewById(R.id.userRv);
         messageAdapter = new MessageAdapter(userList,MessageActivity.this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -76,6 +77,9 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
+    //When user clicks on back button in messaging activity
+    //Prompts user to log out
+    //As long as user exits messaging part, user has to log out
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(MessageActivity.this);

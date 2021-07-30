@@ -26,6 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, factory, DATABASE_VERSION);
     }
 
+    //Creation of TO DO database table
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TODO_TABLE = "CREATE TABLE " +

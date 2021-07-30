@@ -61,6 +61,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="9dp" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -249,15 +257,8 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <WebView
-        android:id="@+id/webview"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="279dp" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

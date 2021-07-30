@@ -25,6 +25,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //Inflate message view holder
         View item = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.user_item,
                 parent,
@@ -35,6 +36,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
+
+        //Binds user data to viewholder
         User user = messageList.get(position);
         holder.userName.setText(user.getName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
