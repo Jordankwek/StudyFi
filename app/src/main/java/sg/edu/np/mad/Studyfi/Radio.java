@@ -3,6 +3,7 @@ package sg.edu.np.mad.Studyfi;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
+//Radio Class
 public class Radio {
 
     public String radioName, radioLink;
@@ -16,17 +17,6 @@ public class Radio {
     public void setRadioName(String radioName) {
         this.radioName = radioName;
     }
-
-    /*
-    public int getRadioPic() {
-        return radioPic;
-    }
-
-    public void setRadioPic(int radioPic) {
-        this.radioPic = radioPic;
-    }
-
-     */
 
     public String getRadioLink() {
         return radioLink;

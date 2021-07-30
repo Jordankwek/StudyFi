@@ -1,5 +1,6 @@
 package sg.edu.np.mad.Studyfi;
 
+//User class
 public class User {
     String uid;
     String name;

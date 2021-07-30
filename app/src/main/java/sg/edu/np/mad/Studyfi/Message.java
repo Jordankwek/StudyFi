@@ -1,5 +1,6 @@
 package sg.edu.np.mad.Studyfi;
 
+//Message Class
 public class Message {
     String message;
     String senderID;
