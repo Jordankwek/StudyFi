@@ -33,23 +33,50 @@ public class TimerActivity extends AppCompatActivity {
 
         //Create new Timer Object
         Timer timerObj = new Timer();
+        startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
+        timerObj.paused = true;
+        timerObj.state = "Inactive";
 
         //Toggle Start and Pause button to switch between Paused and Resumed
         startAndPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (timerObj.paused) {
-                    startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
-                    timerObj.paused = false;
+                if (timerObj.state == "Countdown") {
+                    if (timerObj.paused) {
+                        startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
+                        timerObj.paused = false;
 
-                    //Starts counting down again
-                    countDown(secondsLeft, minutesLeft, timer, startAndPauseButton, timerObj);
+                        //Starts counting down again
+                        countDown(secondsLeft, minutesLeft, timer, startAndPauseButton, timerObj);
+                    }
+                    else {
+                        startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
+                        timerObj.paused = true;
+
+                        myCountDown.cancel();
+                    }
+                }
+                else if (timerObj.state == "Stopwatch") {
+                    if (timerObj.paused) {
+                        startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
+                        timerObj.paused = false;
+
+                        //Starts counting down again
+                        countUp(timerObj.amountOfTimeStored, timer, startAndPauseButton, timerObj);
+                    }
+                    else {
+                        startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
+                        timerObj.paused = true;
+
+                        myCountUp.cancel();
+                    }
                 }
                 else {
-                    startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
-                    timerObj.paused = true;
-
-                    myCountDown.cancel();
+                    startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
+                    timerObj.paused = false;
+                    timerObj.state = "Stopwatch";
+                    // Start counting up
+                    countUp(timerObj.amountOfTimeStored, timer, startAndPauseButton, timerObj);
                 }
             }
         });
@@ -58,8 +85,21 @@ public class TimerActivity extends AppCompatActivity {
         setTimerConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (timerObj.state != "Inactive") {
+                    timer.setText("00 : 00");
+                    startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
+                    timerObj.amountOfTimeStored = 0;
+                    timerObj.paused = true;
+                    timerObj.state = "Inactive";
+                    setTimerInput.setText("");
+
+                    myCountDown.cancel();
+                    myCountUp.cancel();
+                }
+
                 startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
                 timerObj.paused = false;
+                timerObj.state = "Countdown";
 
                 Editable timeAmount = setTimerInput.getText();
                 String timeAmountString = timeAmount.toString();
@@ -77,18 +117,22 @@ public class TimerActivity extends AppCompatActivity {
         resetTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                timer.setText("00 : 00");
-                startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
-                timerObj.paused = true;
-                setTimerInput.setText("");
+                if (timerObj.state == "Inactive") {
+                    timer.setText("00 : 00");
+                    startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
+                    timerObj.amountOfTimeStored = 0;
+                    timerObj.paused = true;
+                    timerObj.state = "Inactive";
+                    setTimerInput.setText("");
 
-                myCountDown.cancel();
+                    myCountDown.cancel();
+                    myCountUp.cancel();
+                }
             }
         });
     }
 
     CountDownTimer myCountDown;
-
     private void countDown(long secondInput, long minuteInput, TextView timer, ImageView startAndPauseButton, Timer timerObj){
         myCountDown = new CountDownTimer((1000 * secondInput + (60000 * minuteInput)), 1000){
             public void onTick(long millisUntilFinished){
@@ -124,5 +168,51 @@ public class TimerActivity extends AppCompatActivity {
             }
         };
         myCountDown.start();
+    }
+
+    CountDownTimer myCountUp;
+    private void countUp(long timePassed, TextView timer, ImageView startAndPauseButton, Timer timerObj){
+        myCountUp = new CountDownTimer(5999000, 1000){
+            public void onTick(long millisUntilFinished) {
+                long seconds = (5999000 - millisUntilFinished + timePassed) / 1000;
+                timerObj.amountOfTimeStored = seconds * 1000;
+
+                // Convert the seconds passed into minutes and seconds
+                if (seconds < 60) {
+                    String secondsString = Long.toString(seconds);
+                    if (seconds < 10) {
+                        secondsString = "0" + secondsString;
+                    }
+
+                    timer.setText("00 : " + secondsString);
+                }
+                else {
+                    long secondsLeft = seconds % 60;
+                    long minutes = (seconds - secondsLeft) / 60;
+                    String secondsString = Long.toString(secondsLeft);
+                    String minutesString = Long.toString(minutes);
+
+                    if (secondsLeft < 10) {
+                        secondsString = "0" + secondsString;
+                    }
+
+                    if (minutes < 10) {
+                        minutesString = "0" + minutesString;
+                    }
+
+                    timer.setText(minutesString + " : " + secondsString);
+                }
+
+                //onTick(seconds);
+            }
+
+            public void onFinish() {
+                timer.setText("00 : 00");
+                startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
+                timerObj.paused = true;
+                myCountDown.cancel();
+            }
+        };
+        myCountUp.start();
     }
 }

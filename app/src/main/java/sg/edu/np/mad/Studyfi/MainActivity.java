@@ -117,7 +117,7 @@ public class  MainActivity extends AppCompatActivity {
 
 
         //Call function to start the notification timer
-        Intent notificationIntent = new Intent(getApplicationContext(), MotivationalQuoteActivity.class);
+        /*Intent notificationIntent = new Intent(getApplicationContext(), MotivationalQuoteActivity.class);
         PendingIntent contentIntent = PendingIntent.getService(getApplicationContext(), 0, notificationIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
 
@@ -126,7 +126,7 @@ public class  MainActivity extends AppCompatActivity {
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + AlarmManager.INTERVAL_DAY / 6,
                 AlarmManager.INTERVAL_DAY / 6,
-                contentIntent);
+                contentIntent);*/
     }
 
     @Override

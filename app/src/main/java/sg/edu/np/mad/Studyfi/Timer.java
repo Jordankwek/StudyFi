@@ -2,8 +2,9 @@ package sg.edu.np.mad.Studyfi;
 
 //Timer class
 public class Timer {
-    public long amountOfTimeLeft;
+    public long amountOfTimeStored;
     public boolean paused;
+    public String state; // Can be Inactive, Countdown or Stopwatch
 
     public boolean isPaused() {
         return paused;
