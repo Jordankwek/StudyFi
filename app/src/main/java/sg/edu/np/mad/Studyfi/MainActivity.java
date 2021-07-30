@@ -11,19 +11,47 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 
 public class  MainActivity extends AppCompatActivity {
 
-    Button bopen;
+    private WebView webview;
+
+    private SearchView searchView;
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         getSupportActionBar().hide();
+
+        webview = (WebView)findViewById(R.id.webview);
+        webview.setWebViewClient(new WebViewClient());
+
+        
+        searchView = (SearchView)findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                webview.loadUrl("https://www.google.com/search?q=" + searchView.getQuery());
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
 
 
         LinearLayout toDoFunc = findViewById(R.id.toDoFunc);
