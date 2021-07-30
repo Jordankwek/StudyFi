@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -74,9 +75,11 @@ public class ToDoActivity extends AppCompatActivity {
 
                             databaseHandler.addTask(task);
                             toDoList.add(task);
-                            todoAdapter.notifyDataSetChanged();
                             addDialog.dismiss();
                         }
+                        todoAdapter.notifyDataSetChanged();
+                        finish();
+                        startActivity(getIntent());
                     }
                 });
                 cancelBtn.setOnClickListener(new View.OnClickListener() {

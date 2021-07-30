@@ -31,7 +31,17 @@
                 android:background="@drawable/gradient"
                 app:srcCompat="@drawable/ic_baseline_radio_24"
                 tools:srcCompat="@drawable/ic_baseline_radio_24" />
+
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/reference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="reference"
+            android:textAlignment="center"
+            android:textSize="8sp" />
 
         <TextView
             android:id="@+id/radioTitle"

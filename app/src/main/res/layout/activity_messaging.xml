@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="207dp">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/chatLabel"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#8048E3"
