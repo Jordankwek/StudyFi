@@ -11,9 +11,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
+
+    Button bopen;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
 
         LinearLayout toDoFunc = findViewById(R.id.toDoFunc);
         LinearLayout studyNoteFunc = findViewById(R.id.studyNoteFunc);
@@ -63,6 +67,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Goes to study notes page when called
+        studyNoteFunc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NotesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //Goes to photomath
+        photoMathFunc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getPackageManager().getLaunchIntentForPackage("com.microblink.photomath");
+                startActivity(intent);
+            }
+        });
+
 
         //Call function to start the notification timer
         Intent notificationIntent = new Intent(getApplicationContext(), MotivationalQuoteActivity.class);
