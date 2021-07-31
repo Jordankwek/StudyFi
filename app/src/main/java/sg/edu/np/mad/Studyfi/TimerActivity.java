@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.CountDownTimer;
+import android.widget.Toast;
 
 public class TimerActivity extends AppCompatActivity {
 
@@ -86,15 +87,19 @@ public class TimerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (timerObj.state != "Inactive") {
+                    if (timerObj.state == "Countdown" && !timerObj.paused) {
+                        myCountDown.cancel();
+                    }
+                    else if (timerObj.state == "Stopwatch" && !timerObj.paused) {
+                        myCountUp.cancel();
+                    }
+
                     timer.setText("00 : 00");
                     startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
                     timerObj.amountOfTimeStored = 0;
                     timerObj.paused = true;
                     timerObj.state = "Inactive";
                     setTimerInput.setText("");
-
-                    myCountDown.cancel();
-                    myCountUp.cancel();
                 }
 
                 startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
@@ -117,16 +122,20 @@ public class TimerActivity extends AppCompatActivity {
         resetTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (timerObj.state == "Inactive") {
+                if (timerObj.state != "Inactive") {
+                    if (timerObj.state == "Countdown" && !timerObj.paused) {
+                        myCountDown.cancel();
+                    }
+                    else if (timerObj.state == "Stopwatch" && !timerObj.paused) {
+                        myCountUp.cancel();
+                    }
+
                     timer.setText("00 : 00");
                     startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
                     timerObj.amountOfTimeStored = 0;
                     timerObj.paused = true;
                     timerObj.state = "Inactive";
                     setTimerInput.setText("");
-
-                    myCountDown.cancel();
-                    myCountUp.cancel();
                 }
             }
         });
@@ -164,7 +173,11 @@ public class TimerActivity extends AppCompatActivity {
                 timer.setText("00 : 00");
                 startAndPauseButton.setImageResource(android.R.drawable.ic_media_play);
                 timerObj.paused = true;
+                timerObj.state = "Inactive";
                 myCountDown.cancel();
+
+                // Send toast
+                Toast.makeText(getApplicationContext(), "Timer Done", Toast.LENGTH_SHORT).show();
             }
         };
         myCountDown.start();
