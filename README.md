@@ -65,7 +65,9 @@ to link to photomath for users who need help with mathematics
 
 **Role**
 **Contributions**
-
+- Stopwatch that allows user to set a time to countdown
+- Timer that counts up to help the user keep track of time
+- Motivational quotes that appear at regular intervals as notifications taken from an API
 
 ## Screenshots of app 
 
