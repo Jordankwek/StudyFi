@@ -3,8 +3,11 @@ package sg.edu.np.mad.Studyfi;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +19,10 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class  MainActivity extends AppCompatActivity {
 
@@ -52,14 +59,25 @@ public class  MainActivity extends AppCompatActivity {
             }
         });
 
-
-
         LinearLayout toDoFunc = findViewById(R.id.toDoFunc);
         LinearLayout studyNoteFunc = findViewById(R.id.studyNoteFunc);
         LinearLayout timerFunc = findViewById(R.id.timerFunc);
         LinearLayout radioFunc = findViewById(R.id.radioFunc);
         LinearLayout photoMathFunc = findViewById(R.id.photoMathFunc);
         LinearLayout messageFunc = findViewById(R.id.messageFunc);
+
+        //Call function to start the notification timer
+        /*Intent notificationIntent = new Intent(getApplicationContext(), MotivationalQuoteActivity.class);
+        startActivity(notificationIntent);
+        PendingIntent contentIntent = PendingIntent.getService(getApplicationContext(), 0, notificationIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(getApplicationContext().ALARM_SERVICE);
+        alarmManager.cancel(contentIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + AlarmManager.INTERVAL_DAY / 6,
+                AlarmManager.INTERVAL_DAY / 6,
+                contentIntent);*/
 
         //Goes to To do activity page clicked
         toDoFunc.setOnClickListener(new View.OnClickListener() {
@@ -114,19 +132,6 @@ public class  MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        //Call function to start the notification timer
-        Intent notificationIntent = new Intent(getApplicationContext(), MotivationalQuoteActivity.class);
-        PendingIntent contentIntent = PendingIntent.getService(getApplicationContext(), 0, notificationIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(getApplicationContext().ALARM_SERVICE);
-        alarmManager.cancel(contentIntent);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                System.currentTimeMillis() + AlarmManager.INTERVAL_DAY / 6,
-                AlarmManager.INTERVAL_DAY / 6,
-                contentIntent);
     }
 
     @Override
