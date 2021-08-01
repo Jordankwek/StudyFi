@@ -57,17 +57,27 @@ to link to photomath for users who need help with mathematics
 **Syed Sharuk**
 
 **Role**
-**Contributions**
+ - UI designer
+ - Idea generator
+ - Advice giver
+ - Function tester
+ - study note creator
 
+**Contributions**
+- Created home page 
+- study note app ( Edit, create and delete)
+- permanent storage
+- implemenet google bar
+- helped with powerpoint slides
+- helped to brainstorm ideas
+- added to link to open photomath
 
 
 **Ho Jun An**
 
 **Role**
 **Contributions**
-- Stopwatch that allows user to set a time to countdown
-- Timer that counts up to help the user keep track of time
-- Motivational quotes that appear at regular intervals as notifications taken from an API
+
 
 ## Screenshots of app 
 
@@ -131,6 +141,33 @@ They can enter their messages at the bottom of the screen and press on the butto
 of the input text box to send their messages
 
 [![chat.jpg](https://i.postimg.cc/pLs7zG8p/chat.jpg)](https://postimg.cc/SnzDpGgh)
+
+home page of the study note app
+
+[![Study-Home.jpg](https://i.postimg.cc/76S4wZPR/Study-Home.jpg)](https://postimg.cc/dkQp9vyR)
+
+click add in the action bar to add new notes
+
+[![StudyAdd.jpg](https://i.postimg.cc/T3SvbDpS/studyAdd.jpg)](https://postimg.cc/HrQNDj04)
+
+holding down the notes app will let you delete it.
+
+[![Study-Delete.jpg](https://i.postimg.cc/3RQMSQjF/study-Delete.jpg)](https://postimg.cc/Mc5rH4Fn)
+
+click on the note to expand it and view larger texts and edit it
+
+[![StudyFull.jpg](https://i.postimg.cc/9MhSPtVx/study-full.jpg)](https://postimg.cc/3ytnYGkp)
+
+search bar
+
+[![search.jpg](https://i.postimg.cc/tCwBttNh/search.jpg)](https://postimg.cc/fJ77MdFL)
+
+google search
+
+[![searchBar.jpg](https://i.postimg.cc/ZnqwjwQL/seachBar.jpg)](https://postimg.cc/fJ77MdFL)
+
+
+
 
 
 
