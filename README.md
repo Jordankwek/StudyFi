@@ -181,14 +181,31 @@ google search
 
 [![searchBar.jpg](https://i.postimg.cc/ZnqwjwQL/seachBar.jpg)](https://postimg.cc/fJ77MdFL)
 
+timer page
 
+[![timerpage.png](https://i.postimg.cc/jd81DWv8/timerpage.png)](https://postimg.cc/jL7c9SpN)
 
+set a time at set timer
 
+[![settimer.png](https://i.postimg.cc/KzSGCpMg/settimer.png)](https://postimg.cc/3y1QvB9K)
 
+click confirm to start counting down
 
+[![timercountdown.png](https://i.postimg.cc/x1MFtsnZ/timercountdown.png)](https://postimg.cc/Yv23Sz4N)
 
+click pause button while countdown to pause
 
+[![timerpause.png](https://i.postimg.cc/kXB56SqG/timerpause.png)](https://postimg.cc/LnFSGnqF)
 
+toast when timer runs out
 
+[![timerfinish.png](https://i.postimg.cc/Hn8fHT1Y/timerfinish.png)](https://postimg.cc/y3Bfy4Nt)
 
+click pause button while timer is inactive to start counting up
+
+[![timercountup.png](https://i.postimg.cc/L8vRx6Hw/timercountup.png)](https://postimg.cc/hXJHjnQ1)
+
+click reset button to revert everything to normal
+
+[![timerreset.png](https://i.postimg.cc/y69HwT1F/timerreset.png)](https://postimg.cc/K4ZwTBgz)
 
