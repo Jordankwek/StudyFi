@@ -17,7 +17,7 @@ user who are using StudyFi, listen to radio and songs, keep track of how long th
 been studying for, search for information using our inapp google search bar and a button
 to link to photomath for users who need help with mathematics
 
-## Features in app:
+## Features in app and how to use them:
 - To-do list 
 Allows user to take down daily task. With the add button, they can add new task. When they press and hold on the task, they can delete it. If they complete the task and tick the checkbox, they are given an option to delete the task. By click on the title of the task, they will be able to edit the task. After checking the checkbox or editting the title, the date below the title of the task will be updated to the current date when they last editted the task
 
