@@ -57,6 +57,7 @@ to link to photomath for users who need help with mathematics
 **Syed Sharuk**
 
 **Role**
+
  - UI designer
  - Idea generator
  - Advice giver
@@ -64,6 +65,7 @@ to link to photomath for users who need help with mathematics
  - study note creator
 
 **Contributions**
+
 - Created home page 
 - study note app ( Edit, create and delete)
 - permanent storage
@@ -72,12 +74,24 @@ to link to photomath for users who need help with mathematics
 - helped to brainstorm ideas
 - added to link to open photomath
 
-
 **Ho Jun An**
 
 **Role**
+
+- UI designer
+- Idea generator
+- Advice giver
+- Function tester
+- Timer creator
+- Motivational Quote creator
+
 **Contributions**
 
+- Helped with the powerpoint slides
+- Helped to brainstorm ideas
+- Created Stopwatch to allow the user to set specific time
+- Created a timer system to allow the user to keep track of time
+- Added Motivational Quotes taken from an API that will occasionally be sent through a Notification
 
 ## Screenshots of app 
 
