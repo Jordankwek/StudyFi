@@ -18,12 +18,21 @@ been studying for, search for information using our inapp google search bar and 
 to link to photomath for users who need help with mathematics
 
 ## Features in app:
-- To-do list
+- To-do list 
+Allows user to take down daily task. With the add button, they can add new task. When they press and hold on the task, they can delete it. If they complete the task and tick the checkbox, they are given an option to delete the task. By click on the title of the task, they will be able to edit the task. After checking the checkbox or editting the title, the date below the title of the task will be updated to the current date when they last editted the task
+
 - Note taking 
+
 - Countdown/countup timer
+
 - Radio (online) / Songs (offline)
+Allows user to select online radio or offline songs to listen to. Upon selecting a song, there will be 2 buttons for them to either start or stop the music.
+
 - Direct link to photomath
+-
 - Messaging function
+Before the user gets to use the messaging function, they have to either login or register an account. After registering, they will be able to message all the users who registered in the studyFi app as well. They enter their text message in the text box and click on the send button on the right side of it to send the message
+
 - Inapp google search bar
 
 ## Roles and contributions of each members
@@ -208,4 +217,9 @@ click pause button while timer is inactive to start counting up
 click reset button to revert everything to normal
 
 [![timerreset.png](https://i.postimg.cc/y69HwT1F/timerreset.png)](https://postimg.cc/K4ZwTBgz)
+
+## User Diagram
+
+User diagram for messaging
+[![Screenshot-2021-08-02-235228.png](https://i.postimg.cc/t4mvd86K/Screenshot-2021-08-02-235228.png)](https://postimg.cc/K1B5xqJf)
 
