@@ -31,7 +31,7 @@ to link to photomath for users who need help with mathematics
 - Direct link to photomath
 -
 - Messaging function
-> Before the user gets to use the messaging function, they have to either login or register an account. After registering, they will be able to message all the users who registered in the studyFi app as well. They enter their text message in the text box and click on the send button on the right side of it to send the message
+> Before the user gets to use the messaging function, they have to either login or register an account. During the registration, they have to make sure that their passwords are more than 6 characters long, password and confirm password must match, and email must be in the correct format. After registering, they will be able to message all the users who registered in the studyFi app as well. They enter their text message in the text box and click on the send button on the right side of it to send the message
 
 - Inapp google search bar
 
