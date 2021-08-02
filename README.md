@@ -223,3 +223,6 @@ click reset button to revert everything to normal
 User diagram for messaging
 [![Screenshot-2021-08-02-235228.png](https://i.postimg.cc/t4mvd86K/Screenshot-2021-08-02-235228.png)](https://postimg.cc/K1B5xqJf)
 
+## References
+
+Music used in the app - https://www.bensound.com
