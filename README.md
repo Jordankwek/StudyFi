@@ -88,6 +88,7 @@ to link to photomath for users who need help with mathematics
 ## To-do List
 
 When user clicks on the to-do list button on the homescreen
+
 [![todolist.jpg](https://i.postimg.cc/FHvmDB7p/todolist.jpg)](https://postimg.cc/2V0P5TdL)
 
 if user presses on the add button at the bottom left of the screen
