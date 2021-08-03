@@ -24,6 +24,7 @@ to link to photomath for users who need help with mathematics
 - Note taking 
 
 - Countdown/countup timer
+> Allows user to either set a time to count down from in minutes or to start a stopwatch that counts up from 0. Both of these features are on the same timer page, setting a time in minutes and clicking the confirm button will begin to start the countdown. Clicking on the pause button any time during the countdown will pause the timer, and resume the timer once it is clicked again. Clicking on the pause button while there is no countdown active will start the stopwatch instead, with the timer starting to count up from 00 : 00. The reset button at the bottom of the page will reset any countdown or stopwatch that is currently active and revert the timer back to 0.
 
 - Radio (online) / Songs (offline)
 > Allows user to select online radio or offline songs to listen to. Upon selecting a song, there will be 2 buttons for them to either start or stop the music.
@@ -34,6 +35,9 @@ to link to photomath for users who need help with mathematics
 > Before the user gets to use the messaging function, they have to either login or register an account. During the registration, they have to make sure that their passwords are more than 6 characters long, password and confirm password must match, and email must be in the correct format. After registering, they will be able to message all the users who registered in the studyFi app as well. They enter their text message in the text box and click on the send button on the right side of it to send the message
 
 - Inapp google search bar
+
+- Motivational Quote
+> A randomly selected Motivational Quote taken from an API will be occasionally sent out to the user from the app around a four-hour interval.
 
 ## Roles and contributions of each members
 
