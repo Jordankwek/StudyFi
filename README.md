@@ -106,7 +106,7 @@ to link to photomath for users who need help with mathematics
 - Created a timer system to allow the user to keep track of time
 - Added Motivational Quotes taken from an API that will occasionally be sent through a Notification
 
-## Screenshots of app 
+## Screenshots of app with user guides
 
 ## Homescreen
 
@@ -118,19 +118,19 @@ When user clicks on the to-do list button on the homescreen
 
 [![todolist.jpg](https://i.postimg.cc/FHvmDB7p/todolist.jpg)](https://postimg.cc/2V0P5TdL)
 
-if user presses on the add button at the bottom left of the screen
+if user presses on the add button at the bottom left of the screen, user can choose to either input a task and add the task which will be displayed on the list of tasks or press on the cancel button.
 
 [![addtask.jpg](https://i.postimg.cc/cCYycRWP/addtask.jpg)](https://postimg.cc/GTc5LsHj)
 
-if user presses on the to-do task title
+if user presses on the to-do task title, user can update their task or press on the cancel button
 
 [![edittask.jpg](https://i.postimg.cc/MK28pFbw/edittask.jpg)](https://postimg.cc/t75crDMv)
 
-if user checks the task
+if user checks the task, user will be prompted to delete the task. User can choose to either delete or cancel to keep the task
 
 [![completetask.jpg](https://i.postimg.cc/zftrDDp2/completetask.jpg)](https://postimg.cc/sBh8wrk5)
 
-if user press and holds the task
+if user press and holds the task, user will be prompted to delete the task. User can choose to delete or keep the task
 
 [![deletetask.jpg](https://i.postimg.cc/y874F3br/deletetask.jpg)](https://postimg.cc/dLNxF3v8)
 
@@ -141,7 +141,7 @@ will be labelled offline and radio stations will be online as they require inter
 
 [![selectradio.jpg](https://i.postimg.cc/W4fBLWbQ/selectradio.jpg)](https://postimg.cc/Y4YnQxF3)
 
-when user selects a radio/song to listen to. 
+when user selects a radio/song to listen to. User can either play or stop the music
 
 [![radio.jpg](https://i.postimg.cc/d3GpCJmY/radio.jpg)](https://postimg.cc/645MJJmj)
 
@@ -149,24 +149,24 @@ when user selects a radio/song to listen to.
 
 When user clicks on the messaging button on the homescreen. If user has an existing account,
 they can login. If user does not have an account, they can click on the "Sign up" bolded text below 
-the sign in button
+the sign in button.
 
 [![login.jpg](https://i.postimg.cc/h4mH60F5/login.jpg)](https://postimg.cc/Z0T7yp58)
 
 If user decides to sign up for a new account, they will have to enter their name, email and
-passwords. However, if they already have an account, they can click on the "Sign in" bolded text below
+passwords. Their email must match the email pattern and passwords must be more than 6 characters long. Password must also match the confirm password. However, if they already have an account, they can click on the "Sign in" bolded text below
 the register button
 
 [![register.jpg](https://i.postimg.cc/5NMZVFbN/register.jpg)](https://postimg.cc/grNMyjxf)
 
 After they register or login, they will be able to see the other users using StudyFi app. They will 
-be able to chat freely with each and every one of them
+be able to chat freely with each and every one of them.
 
 [![messaginguser.jpg](https://i.postimg.cc/zGz6LZys/messaginguser.jpg)](https://postimg.cc/xcZt7Zy5)
 
 
 They can enter their messages at the bottom of the screen and press on the button on the right side
-of the input text box to send their messages
+of the input text box to send their messages.
 
 [![chat.jpg](https://i.postimg.cc/pLs7zG8p/chat.jpg)](https://postimg.cc/SnzDpGgh)
 
