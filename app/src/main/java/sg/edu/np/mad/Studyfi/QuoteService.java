@@ -20,6 +20,7 @@ public class QuoteService {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                System.out.println(response);
                 try {
                     for (int i=0; i < response.length(); i++) {
                         JSONObject quoteData = response.getJSONObject(i);
@@ -41,6 +42,7 @@ public class QuoteService {
             }
         });
 
+        System.out.println("testttttttttttttttttttttttt2");
         return quoteList;
     }
 }

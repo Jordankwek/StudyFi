@@ -14,6 +14,7 @@
         android:theme="@style/Theme.Studyfi"
         android:usesCleartextTraffic="true">
         <activity android:name=".NoteEditActivity"></activity>
+        <activity android:name=".MotivationalQuoteActivity"></activity>
         <activity android:name=".ChatActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"></activity>
