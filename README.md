@@ -108,6 +108,10 @@ to link to photomath for users who need help with mathematics
 
 ## Screenshots of app with user guides
 
+## Diagram to show functions in app
+
+[![Power-Point-Slide-Show-Presentation1-6-8-2021-1-48-55-AM.png](https://i.postimg.cc/Zq1nmGCG/Power-Point-Slide-Show-Presentation1-6-8-2021-1-48-55-AM.png)](https://postimg.cc/cKB0M57h)
+
 ## Homescreen
 
 [![homescreen.jpg](https://i.postimg.cc/Vv7s39pv/homescreen.jpg)](https://postimg.cc/ctnN33sG)
