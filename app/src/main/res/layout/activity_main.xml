@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d4d4ff"
+    android:background="#B3B3F1"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -55,9 +55,10 @@
             android:id="@+id/searchView"
             android:layout_width="331dp"
             android:layout_height="50dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:background="#AED7F8"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -99,14 +100,17 @@
                     android:layout_margin="5dp"
                     android:contentDescription="TODO"
                     app:srcCompat="@drawable/ic_baseline_list_24"
-                    tools:ignore="VectorDrawableCompat" />
+                    tools:ignore="VectorDrawableCompat"
+                    app:tint="#777777"/>
 
                 <TextView
+                    android:id="@+id/todoText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="Todo List"
                     android:textAlignment="center"
+                    android:textColor="#777777"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -126,14 +130,17 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/ic_baseline_menu_book_24"
-                    tools:ignore="VectorDrawableCompat" />
+                    tools:ignore="VectorDrawableCompat"
+                    app:tint="#777777"/>
 
                 <TextView
+                    android:id="@+id/studyNoteText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="Study Notes"
                     android:textAlignment="center"
+                    android:textColor="#777777"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -152,14 +159,17 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/ic_baseline_timer_24"
-                    tools:ignore="VectorDrawableCompat" />
+                    tools:ignore="VectorDrawableCompat"
+                    app:tint="#777777"/>
 
                 <TextView
+                    android:id="@+id/timerText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="Timer"
                     android:textAlignment="center"
+                    android:textColor="#777777"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
@@ -183,15 +193,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="27dp"
                     android:layout_margin="5dp"
+                    android:theme="@style/Theme.Studyfi"
                     app:srcCompat="@drawable/ic_baseline_radio_24"
-                    tools:ignore="VectorDrawableCompat" />
+                    tools:ignore="VectorDrawableCompat"
+                    app:tint="#777777" />
 
                 <TextView
+                    android:id="@+id/radioText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="Radio"
                     android:textAlignment="center"
+                    android:textColor="#777777"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -210,14 +224,17 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/ic_baseline_add_a_photo_24"
-                    tools:ignore="VectorDrawableCompat" />
+                    tools:ignore="VectorDrawableCompat"
+                    app:tint="#777777"/>
 
                 <TextView
+                    android:id="@+id/photomathText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="Photomath"
                     android:textAlignment="center"
+                    android:textColor="#777777"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -237,15 +254,17 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     app:srcCompat="@drawable/ic_baseline_message_24"
-                    tools:ignore="VectorDrawableCompat" />
+                    tools:ignore="VectorDrawableCompat"
+                    app:tint="#777777"/>
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/messageText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:text="Message"
                     android:textAlignment="center"
+                    android:textColor="#777777"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
