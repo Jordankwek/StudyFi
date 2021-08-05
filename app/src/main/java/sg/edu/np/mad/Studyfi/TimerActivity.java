@@ -228,4 +228,11 @@ public class TimerActivity extends AppCompatActivity {
         };
         myCountUp.start();
     }
+
+    //Prevent activity from stacking
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 }

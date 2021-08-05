@@ -159,5 +159,11 @@ public class RadioActivity extends AppCompatActivity {
     //Will implement more features to allow users to
     // use app while listening to songs at the same time
 
+    //Prevent activity from stacking
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 
 }

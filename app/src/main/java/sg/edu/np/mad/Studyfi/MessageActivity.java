@@ -102,4 +102,12 @@ public class MessageActivity extends AppCompatActivity {
         });
         builder.show();
     }
+
+    //Prevent activity from stacking
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
 }

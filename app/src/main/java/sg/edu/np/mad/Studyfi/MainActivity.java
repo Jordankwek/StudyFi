@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -154,4 +155,5 @@ public class  MainActivity extends AppCompatActivity {
         });
         builder.show();
     }
+
 }
