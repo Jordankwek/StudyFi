@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 //Radio viewholder
 public class RadioViewHolder extends RecyclerView.ViewHolder {
     TextView radioTitle, radioOffline;
-    //ImageView radioImage;
 
     public RadioViewHolder(View itemView) {
         super(itemView);
         radioTitle = itemView.findViewById(R.id.radioName);
         radioOffline = itemView.findViewById(R.id.radioOffline);
-        //radioImage = itemView.findViewById(R.id.radioName);
     }
 }

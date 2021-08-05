@@ -32,7 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
     //Initialize auth
     private FirebaseAuth auth;
     //email pattern for validation
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    String emailPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

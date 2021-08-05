@@ -52,21 +52,9 @@ public class RadioActivity extends AppCompatActivity {
 
         //Create new mediaplayer
         mediaPlayer = new MediaPlayer();
-        /*
-        if (mediaPlayer == null) {
-            mediaPlayer = new MediaPlayer();
-        }
-         */
 
         //Plays online radio when clicked
         if (radioInternet == false) {
-            /*
-            if(mediaPlayer != null)
-            {
-                mediaPlayer.stop();
-                mediaPlayer.release();
-            }
-             */
 
             //When user clicks play button
             playbutton.setOnClickListener(new View.OnClickListener() {
