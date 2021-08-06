@@ -105,4 +105,11 @@ public class ToDoActivity extends AppCompatActivity {
         });
 
     }
+
+    //Prevent activity from stacking
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -102,4 +103,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    //Prevent activity from stacking
+    @Override
+    protected void onStop() {
+        super.onStop();
+        finish();
+    }
+
 }
