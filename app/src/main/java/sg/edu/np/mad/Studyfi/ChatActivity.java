@@ -115,7 +115,7 @@ public class ChatActivity extends AppCompatActivity {
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String message = chatMessage.getText().toString();
+                String message = chatMessage.getText().toString().trim();
                 if(message.isEmpty())
                 {
                     Toast.makeText(ChatActivity.this,"Please enter a message",Toast.LENGTH_SHORT);

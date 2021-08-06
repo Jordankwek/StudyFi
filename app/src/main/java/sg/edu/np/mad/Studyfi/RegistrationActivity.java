@@ -61,10 +61,10 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Retrieving user registration input
-                String name = regName.getText().toString();
-                String email = regEmail.getText().toString();
-                String password = regPassword.getText().toString();
-                String cPassword = regcPassword.getText().toString();
+                String name = regName.getText().toString().trim();
+                String email = regEmail.getText().toString().trim().toLowerCase();
+                String password = regPassword.getText().toString().trim();
+                String cPassword = regcPassword.getText().toString().trim();
 
                 //Validation for empty name, email, password and confirm password
                 if(TextUtils.isEmpty(name) || TextUtils.isEmpty(email) ||
@@ -84,9 +84,9 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();
                 }
                 //Validation for password length less than 6
-                else if ((password.length()<6) || cPassword.length()<6)
+                else if (password.length()<6 || cPassword.length()<6 || (cPassword.length()<6 && password.length()<6))
                 {
-                    Toast.makeText(RegistrationActivity.this, "Enter 6 Character Password", Toast.LENGTH_SHORT);
+                    Toast.makeText(RegistrationActivity.this, "Enter 6 Character Password", Toast.LENGTH_SHORT).show();
                 }
                 //If input passes validation
                 else {
