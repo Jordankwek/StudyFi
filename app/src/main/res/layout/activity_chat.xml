@@ -67,6 +67,8 @@
                 android:layout_gravity="center_vertical"
                 android:background="#B7F1F8"
                 android:hint="Type a message..."
+                android:textColorHint="#777777"
+                android:textColor="@color/black"
                 android:paddingLeft="10dp"
                 android:paddingBottom="3dp" />
 
