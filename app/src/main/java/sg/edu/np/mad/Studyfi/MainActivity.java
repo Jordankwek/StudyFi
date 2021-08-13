@@ -3,31 +3,24 @@ package sg.edu.np.mad.Studyfi;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import android.widget.Toast;
 
 public class  MainActivity extends AppCompatActivity {
 
-    private WebView webview;
+    WebView webview;
 
     private SearchView searchView;
 
@@ -40,12 +33,13 @@ public class  MainActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        webview = (WebView)findViewById(R.id.webview);
+        webview = (WebView) findViewById(R.id.webview);
         webview.setWebViewClient(new WebViewClient());
 
-        
-        searchView = (SearchView)findViewById(R.id.searchView);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+
+        searchView = (SearchView) findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
 
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -58,7 +52,13 @@ public class  MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 return false;
             }
+
+
         });
+
+
+
+
 
         LinearLayout toDoFunc = findViewById(R.id.toDoFunc);
         LinearLayout studyNoteFunc = findViewById(R.id.studyNoteFunc);
@@ -66,19 +66,6 @@ public class  MainActivity extends AppCompatActivity {
         LinearLayout radioFunc = findViewById(R.id.radioFunc);
         LinearLayout photoMathFunc = findViewById(R.id.photoMathFunc);
         LinearLayout messageFunc = findViewById(R.id.messageFunc);
-
-        //Call function to start the notification timer
-        /*Intent notificationIntent = new Intent(getApplicationContext(), MotivationalQuoteActivity.class);
-        startActivity(notificationIntent);
-        PendingIntent contentIntent = PendingIntent.getService(getApplicationContext(), 0, notificationIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(getApplicationContext().ALARM_SERVICE);
-        alarmManager.cancel(contentIntent);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                System.currentTimeMillis() + AlarmManager.INTERVAL_DAY / 6,
-                AlarmManager.INTERVAL_DAY / 6,
-                contentIntent);*/
 
         //Goes to To do activity page clicked
         toDoFunc.setOnClickListener(new View.OnClickListener() {
@@ -126,17 +113,53 @@ public class  MainActivity extends AppCompatActivity {
         });
 
         //Goes to photomath
+        //Confirmation dialog if we click photomath
+
         photoMathFunc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getPackageManager().getLaunchIntentForPackage("com.microblink.photomath");
-                startActivity(intent);
-            }
+
+            public void onClick(View v)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage(("Leave the app and go Photomath?"));
+                builder.setNegativeButton("No",null);
+                builder.setCancelable(false);
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                                {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which)
+                                    {
+                                        Intent intent = getPackageManager().getLaunchIntentForPackage("com.microblink.photomath");
+                                        startActivity(intent);
+                                    }
+
+
+                                });
+                builder.show();
+
+                                                  }
+
+
         });
+
+
+        //Call function to start the notification timer
+        Intent notificationIntent = new Intent(getApplicationContext(), MotivationalQuoteActivity.class);
+        PendingIntent contentIntent = PendingIntent.getService(getApplicationContext(), 0, notificationIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(getApplicationContext().ALARM_SERVICE);
+        alarmManager.cancel(contentIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + AlarmManager.INTERVAL_DAY / 6,
+                AlarmManager.INTERVAL_DAY / 6,
+                contentIntent);
     }
 
     @Override
     public void onBackPressed() {
+        if (webview.canGoBack()){
+            webview.goBack();
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("Exit Application");
         builder.setMessage("Are you sure you want exit the app?");

@@ -4,9 +4,11 @@
 
 | Name | Student ID |
 |-|-|
-| Jordan Kwek | S10205052 |
+| Jordan Kwek/Koroski | S10205052 |
 | Syed Sharuk | S10194023 |
 | Jun An | S10206062 |
+
+
 
 ## Description of app:
 Productive study app that allows users to be less distracted and study more efficiently.
