@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,6 +34,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     //email pattern for validation
     String emailPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+    //Check if user email exist
+    Boolean userExist = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,20 @@ public class RegistrationActivity extends AppCompatActivity {
                 String password = regPassword.getText().toString().trim();
                 String cPassword = regcPassword.getText().toString().trim();
 
+                //Checks whether email exist already
+                auth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        boolean isNewUser = task.getResult().getSignInMethods().isEmpty();
+                        if (isNewUser){
+                            userExist = false;
+                        }
+                        else{
+                            userExist = true;
+                        }
+                    }
+                });
+
                 //Validation for empty name, email, password and confirm password
                 if(TextUtils.isEmpty(name) || TextUtils.isEmpty(email) ||
                 TextUtils.isEmpty(password) || TextUtils.isEmpty(cPassword))
@@ -88,6 +105,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 {
                     Toast.makeText(RegistrationActivity.this, "Enter 6 Character Password", Toast.LENGTH_SHORT).show();
                 }
+
+                //Validation for same email registration
+                else if (userExist == true)
+                {
+                    Toast.makeText(RegistrationActivity.this, "Email already exist", Toast.LENGTH_SHORT).show();
+                }
+
                 //If input passes validation
                 else {
                     //Addition of new user to firebase
