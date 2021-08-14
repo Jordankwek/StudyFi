@@ -9,6 +9,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -55,12 +56,11 @@ public class RadioActivity extends AppCompatActivity {
 
         //Plays online radio when clicked
         if (radioInternet == false) {
-
+            Toast.makeText(RadioActivity.this, "Please wait after pressing play", Toast.LENGTH_SHORT).show();
             //When user clicks play button
             playbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(RadioActivity.this, "Please wait...", Toast.LENGTH_SHORT).show();
                     String url = radioLink; // your URL here
                     mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     pausebutton.setEnabled(true);
@@ -142,6 +142,8 @@ public class RadioActivity extends AppCompatActivity {
                 //When user presses pause button, it gets disabled and play button gets enabled
                 playbutton.setEnabled(true);
                 pausebutton.setEnabled(false);
+                finish();
+                startActivity(getIntent());
             }
         });
 
@@ -155,11 +157,6 @@ public class RadioActivity extends AppCompatActivity {
         mediaPlayer.stop();
     }
 
-
-    //Will implement more features to allow users to
-    // use app while listening to songs at the same time
-
-    //Prevent activity from stacking
     @Override
     protected void onStop() {
         super.onStop();

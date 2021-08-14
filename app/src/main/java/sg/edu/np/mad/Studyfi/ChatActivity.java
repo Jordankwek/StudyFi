@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -81,7 +82,7 @@ public class ChatActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         chatRv.setLayoutManager(linearLayoutManager);
         //Make recyclerview show rows from the bottom
-        linearLayoutManager.setStackFromEnd(false);
+        linearLayoutManager.setStackFromEnd(true);
         chatRv.setAdapter(chatAdapter);
 
         //When changes is made to the chat in the firebase
@@ -102,7 +103,9 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 }
                 chatAdapter.notifyDataSetChanged();
-                chatRv.smoothScrollToPosition(chatRv.getAdapter().getItemCount());
+                if (chatRv.getAdapter().getItemCount() > 0) {
+                    chatRv.smoothScrollToPosition(chatRv.getAdapter().getItemCount() - 1);
+                }
             }
 
             @Override
@@ -131,12 +134,7 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
-    //Prevent activity from stacking
-    @Override
-    protected void onStop() {
-        super.onStop();
-        finish();
-    }
 }

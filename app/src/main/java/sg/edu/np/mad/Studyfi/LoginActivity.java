@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Retrieve text from input and convert to string
-                String email = loginEmail.getText().toString();
+                String email = loginEmail.getText().toString().trim().toLowerCase();;
                 String password = loginPassword.getText().toString();
 
                 //Validations for empty email and password fields

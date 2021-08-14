@@ -90,7 +90,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoViewHolder> {
         });
 
         //Editing of title
-        holder.txtTitle.setOnClickListener(new View.OnClickListener() {
+        holder.editIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
