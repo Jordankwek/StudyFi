@@ -2,7 +2,6 @@ package sg.edu.np.mad.Studyfi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -27,8 +26,10 @@ public class TimerActivity extends AppCompatActivity {
         //Connect activity_timer items to TimerActivity
         TextView timer = findViewById(R.id.timer);
         ImageView startAndPauseButton = findViewById(R.id.startAndPauseButton);
-        EditText setTimerInput = findViewById(R.id.setTimerInput);
-        setTimerInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+        EditText setTimerMin = findViewById(R.id.setTimerInputMin);
+        EditText setTimerSec = findViewById(R.id.setTimerInputSec);
+        setTimerMin.setInputType(InputType.TYPE_CLASS_NUMBER);
+        setTimerSec.setInputType(InputType.TYPE_CLASS_NUMBER);
         Button setTimerConfirm = findViewById(R.id.setTimerConfirm);
         Button resetTimer = findViewById(R.id.resetTimer);
 
@@ -86,6 +87,7 @@ public class TimerActivity extends AppCompatActivity {
         setTimerConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (timerObj.state != "Inactive") {
                     if (timerObj.state == "Countdown" && !timerObj.paused) {
                         myCountDown.cancel();
@@ -99,22 +101,49 @@ public class TimerActivity extends AppCompatActivity {
                     timerObj.amountOfTimeStored = 0;
                     timerObj.paused = true;
                     timerObj.state = "Inactive";
-                    setTimerInput.setText("");
+                    setTimerMin.setText("");
                 }
 
-                startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
-                timerObj.paused = false;
-                timerObj.state = "Countdown";
 
-                Editable timeAmount = setTimerInput.getText();
-                String timeAmountString = timeAmount.toString();
-                Long minuteInput = Long.parseLong(timeAmountString);
+                Editable timeAmountMin = setTimerMin.getText();
+                Editable timeAmountSec = setTimerSec.getText();
+                String timeAmountStringMin = timeAmountMin.toString();
+                String timeAmountStringSec = timeAmountSec.toString();
+                if(timeAmountStringMin.isEmpty() && timeAmountStringSec.isEmpty())
+                {
+                    Toast.makeText(TimerActivity.this, "Please enter time", Toast.LENGTH_SHORT).show();
 
-                timer.setText("00 : 00");
-                setTimerInput.setText("");
+                }
 
-                //Starts counting down
-                countDown(0, minuteInput, timer, startAndPauseButton, timerObj);
+                else {
+                    startAndPauseButton.setImageResource(android.R.drawable.ic_media_pause);
+                    timerObj.paused = false;
+                    timerObj.state = "Countdown";
+                    Long minuteInput;
+                    Long secondInput;
+                    if(timeAmountStringMin.isEmpty())
+                    {
+                        minuteInput = 0L;
+                    }
+                    else {
+                        minuteInput = Long.parseLong(timeAmountStringMin);
+                    }
+                    if(timeAmountStringSec.isEmpty())
+                    {
+                        secondInput = 0L;
+                    }
+                    else {
+                        secondInput = Long.parseLong(timeAmountStringSec);
+
+                    }
+                    timer.setText("00 : 00");
+                    setTimerMin.setText("");
+                    setTimerSec.setText("");
+
+                    //Starts counting down
+                    countDown(secondInput + 1, minuteInput, timer, startAndPauseButton, timerObj);
+                }
+
             }
         });
 
@@ -135,7 +164,7 @@ public class TimerActivity extends AppCompatActivity {
                     timerObj.amountOfTimeStored = 0;
                     timerObj.paused = true;
                     timerObj.state = "Inactive";
-                    setTimerInput.setText("");
+                    setTimerMin.setText("");
                 }
             }
         });
@@ -229,10 +258,4 @@ public class TimerActivity extends AppCompatActivity {
         myCountUp.start();
     }
 
-    //Prevent activity from stacking
-    @Override
-    protected void onStop() {
-        super.onStop();
-        finish();
-    }
 }
